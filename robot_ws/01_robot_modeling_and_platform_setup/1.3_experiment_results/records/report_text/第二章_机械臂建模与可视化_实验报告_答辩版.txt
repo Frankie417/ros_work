@@ -1,0 +1,85 @@
+来源：arm2026_ws/第二章_机械臂建模与可视化_实验报告_答辩版.docx
+按 OOXML 段落顺序提取，非页码定位。
+
+《机器人感知与控制综合实践》
+第二章实验报告
+姓名
+
+学号
+
+班级/专业
+
+小组编号
+
+实验日期
+
+实验箱编号
+
+一、实验目标
+•设计URDF模型，用XML描述机器人结构。
+•理解Link、Joint、parent/child、origin、axis、limit的含义。
+•能够修改机械臂URDF并在RViz中验证关节方向和连接关系。
+•能够指出基坐标系、主要关节坐标系及末端执行器位置。
+重点与难点
+重点：父子连杆关系、origin的xyz/rpy、关节旋转轴、关节类型和限位。
+难点：把物理机械臂的装配方向转换为URDF坐标与旋转轴描述。
+二、实验任务与完成情况
+序号
+实验任务
+主要记录内容
+完成情况
+1
+从实物到结构图
+划分 base_link、link0~link6、夹爪与 grasping_frame；主链和末端关系已绘制。
+已完成
+2
+URDF 语法
+核对 Link、Joint、parent/child、origin、axis、limit；完成 base_link—link0—joint1 的连接说明。
+已完成
+3
+模型完善
+使用 box/cylinder 重构箱式承力壳、关节端盖、平行夹爪；无外部 mesh。
+已完成
+4
+RViz 验证
+启动 GUI、robot_state_publisher、RViz；检查 /joint_states、TF 和末端坐标系。
+已完成
+5
+实验总结
+
+
+三、设计报告
+另起一页：
+内容应包括：1设计思路、2机器臂URDF设计与实现、3ROS 通信系统设计、*4仿真环境搭建与实现、*5控制功能开发、*6测试结果与分析、*7问题与解决方法、*8创新点说明、*9问题与分析
+
+
+一、设计思路（格式：宋体，小四，1.5倍行距；首行空2格，段后空一行）
+本报告基于 ROS1 Noetic 的 marm_description 功能包完成机械臂 URDF/Xacro 建模、可视化和关节方向验证。模型使用 XML/Xacro 描述刚体与关节关系，不依赖外部 STL/DAE；所有外观由 box、cylinder 等基础几何体组成。
+二、机器人 URDF 设计与实现
+根坐标系为 base_link。主链为 base_link → link0 → link1 → link2 → link3 → link4 → link5 → link6，link6 再连接两个夹爪手指和 grasping_frame。最终模型共有 11 个 Link、10 个 Joint，其中 6 个 revolute、1 个 prismatic、3 个 fixed，构成无环且无孤立 Link 的单棵树。
+Link 表示刚性部件；Joint 表示 parent 与 child 之间的约束。Joint 的 origin xyz/rpy 定义 joint frame 相对 parent link 的平移和姿态，axis 定义 revolute/prismatic joint 的运动轴，limit 规定角度/行程、速度与 effort 范围。
+以 joint4 为例：parent 是 link3，child 是 link4，origin xyz 为 0 0 -0.15，axis 为 1 0 0，角度范围为 -π 到 π。课程修改版只把该 axis 改为 -1 0 0，因此轴线和安装位置不变，但同一正角度的转动方向反转。
+视觉层完成三次迭代：初始模型有 10 个 visual；分段关节壳和工业配色后为 42 个；平行两指夹爪与箱式承力壳、外露侧梁、腕部矩形执行器壳完成后为 53 个。圆柱仅保留在关节端盖、轴承环和法兰，主臂外轮廓不再是简单圆管。
+三、ROS 通信系统设计
+启动文件 launch/view_marm.launch 使用 xacro 展开 urdf/marm.xacro 并写入 robot_description 参数；joint_state_publisher_gui 发布 /joint_states；robot_state_publisher 依据 robot_description 和关节状态发布 /tf、/tf_static；RViz 订阅 TF 与 robot_description 显示模型。固定坐标系设为 base_link，末端检查坐标系为 grasping_frame。
+四、仿真环境搭建与实现
+环境为 WSL2 Ubuntu 20.04、ROS1 Noetic 和 catkin 工作空间 /home/cubertzk/arm2026_ws。使用 source /opt/ros/noetic/setup.bash、source ~/arm2026_ws/devel/setup.bash、catkin_make 和 roslaunch marm_description view_marm.launch 完成构建与启动。
+五、控制功能开发
+本实验不控制实物机械臂。通过 joint_state_publisher_gui 的 joint1~joint6 与 finger_joint1 调节虚拟关节状态，robot_state_publisher 随之更新 TF。该链路用于验证模型运动学语义，而不是发送串口、GPIO 或舵机命令。
+六、测试结果与分析
+主模型与课程修改版均通过 xmllint、Xacro 展开和 check_urdf；catkin_make 返回成功。运行时 robot_description 统计为 11 links、10 joints、53 visuals、9 collisions。主模型与课程版的唯一语义差异为 joint4.axis。
+零位时 base_link 到 grasping_frame 的实测 TF 约为 translation [0, 0, 0.610]、RPY [3.142, -1.571, 0]。发送一组限位内的虚拟 JointState 后，末端变为约 translation [-0.073, 0.002, 0.564]、RPY [0.578, -1.230, 2.744]，证明 /joint_states→robot_state_publisher→TF 链路有效。
+图像证据说明：report_assets/marm_visual_refactor_preview.png 是从展开 URDF 的 geometry、origin、material 与 FK 生成的离线外观预览；report_assets/04_marm_link_joint_tree.png 是真实 Graphviz 结构图。二者不能伪称为 RViz 截图。请在可见 RViz 桌面补插完整模型、TF 坐标轴和 GUI 滑条截图。
+七、问题与解决方法
+问题一：WSLg 的 OpenGL 视口无法由当前捕捉接口读取，表现为黑屏。解决：如实保留运行时节点、话题、TF、check_urdf 证据，并在 Jetson 本地桌面或 NoMachine 会话补拍 RViz。问题二：初版外观主要仍是圆管。解决：仅修改 visual，将主臂改为箱式壳与侧梁，保持 collision、inertial、joint 和 TF 语义不变。
+八、创新点说明
+本模型没有复制开源机械臂 mesh，而是借鉴模块化关节、深浅双色和工业高可见性点缀的设计语言，用基础几何体实现可移植的外观。通过“移除所有 visual 和顶层材质后展开 URDF 完全相等”的程序比较，证明视觉重构没有破坏运动学与碰撞语义。
+九、问题与分析
+若 axis 写错，关节可能绕错误轴转动，或正方向与实物相反，导致后续 link 的 TF、正逆运动学和抓取姿态错误。答辩时应说明：axis 在 joint frame 中表达，必须结合 origin rpy 和右手定则判断，不能只凭 RViz 屏幕方向猜测。
+十、附件说明
+源文件：src/marm_description/urdf/marm.xacro、marm_course_variant.xacro、launch/view_marm.launch。验证文件：generated/model_structure.md、generated/variant.diff、generated/visual_refactor_invariants.md、generated/rviz_validation.md。离线预览与结构图：report_assets/。提交前可按“学号_姓名_URDF建模.zip”打包上述文件。
+十、附件说明
+可以附上但请不要在文中直接张贴：
+源代码压缩包（命名格式：学号_姓名_作品名字.zip），包含 URDF/Xacro 文件、节点代码、自定义消息 / 服务 / 动作文件、launch 文件。
+演示视频，包含 RViz/Gazebo 展示、控制功能演示、高级任务实现。
+其他补充材料（如算法推导文档、额外测试数据）。

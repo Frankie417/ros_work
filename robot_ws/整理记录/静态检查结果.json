@@ -1,0 +1,26 @@
+{
+  "scope": "静态检查；未导入或执行控制程序/Notebook，不启动ROS、网络或硬件",
+  "counts": {
+    "原始文件清单.csv": 1448,
+    "复制文件校验.csv": 166,
+    "报告媒体来源记录": 49,
+    "ZIP成员记录": 337,
+    "文件映射行数": 1448,
+    "Python文件AST": 11,
+    "Notebook代码Cell AST": 118,
+    "XML文件": 14,
+    "本地Markdown链接及图片": 2037,
+    "Notebook内本地Markdown链接": 9,
+    "URDF link/joint": [
+      11,
+      10
+    ]
+  },
+  "failures": [],
+  "known_runtime_gaps": [
+    "catkin顶层CMake入口为路径文本；原模型两个launch的model参数无默认值",
+    "主marm.urdf无标准inertial，包未完整声明运行依赖",
+    "实体DICE SDK/config、本机虚拟环境、相机标定缺失",
+    "手势原始22条回执/录像及完整搬运任务链缺失"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "week5": {
+    "source": "week5/5.目标识别/week5_test_records.csv",
+    "n": 28,
+    "correct": 22,
+    "strict_accuracy": 0.7857142857142857,
+    "per_color": {
+      "green": 15,
+      "yellow": 3,
+      "blue": 6,
+      "red": 4
+    }
+  },
+  "week6_debug": {
+    "source": "week6/week6_action_log.csv",
+    "n": 44,
+    "status": {
+      "失败": 8,
+      "夹取未成功，P4仍有蓝块": 1,
+      "P4 已清空，桶内待人工确认": 35
+    }
+  },
+  "week6_final": {
+    "source": "week6/两轮8次分拣记录.csv",
+    "n": 8,
+    "success": 8,
+    "basis": "人工观察；未与debug日志逐条对应"
+  }
+}

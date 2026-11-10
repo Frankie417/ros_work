@@ -1,0 +1,323 @@
+robot_ws/
+├── 01_robot_modeling_and_platform_setup/
+│   ├── 1.1_code/
+│   │   └── arm2026_ws/
+│   │       ├── scripts/
+│   │       │   ├── __pycache__/
+│   │       │   │   └── preview_z1_gripper.cpython-38.pyc
+│   │       │   └── preview_z1_gripper.py
+│   │       ├── src/
+│   │       │   ├── marm_description/
+│   │       │   │   ├── launch/
+│   │       │   │   │   ├── view_marm.launch
+│   │       │   │   │   ├── view_marm_course_variant.launch
+│   │       │   │   │   ├── view_marm_z1_style.launch
+│   │       │   │   │   └── view_marm_z1_style_course_variant.launch
+│   │       │   │   ├── urdf/
+│   │       │   │   │   ├── marm.xacro
+│   │       │   │   │   ├── marm_course_variant.xacro
+│   │       │   │   │   ├── marm_z1_style.xacro
+│   │       │   │   │   ├── marm_z1_style_core.xacro
+│   │       │   │   │   └── marm_z1_style_course_variant.xacro
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── README.md
+│   │       │   │   ├── package.xml
+│   │       │   │   ├── urdf.rviz
+│   │       │   │   └── urdf_z1_style.rviz
+│   │       │   └── CMakeLists.txt
+│   │       └── .catkin_workspace
+│   ├── 1.2_readme/
+│   │   ├── source_notes/
+│   │   │   ├── URDF_COURSE_REPORT.md
+│   │   │   ├── Unitree参考来源说明.md
+│   │   │   ├── Z1风格独立模型说明.md
+│   │   │   ├── 答辩使用说明.md
+│   │   │   └── 项目完整建模讲述稿.md
+│   │   └── README.md
+│   └── 1.3_experiment_results/
+│       ├── figures/
+│       │   ├── model_previews/
+│       │   │   ├── 04_marm_link_joint_tree.png
+│       │   │   ├── marm_gripper_parallel_jaw_detail.png
+│       │   │   ├── marm_visual_refactor_preview.png
+│       │   │   ├── z1_base_support_20261017.png
+│       │   │   └── z1_gripper_open_close_20261017.png
+│       │   ├── report_week1/
+│       │   │   └── image1.png
+│       │   └── 图片索引.md
+│       ├── original_reports/
+│       │   ├── README.md
+│       │   ├── 第11组(1).docx
+│       │   ├── 第二章_机械臂建模与可视化_实验报告_答辩版.docx
+│       │   └── 第二章_机械臂建模与可视化_实验报告模板.docx
+│       ├── records/
+│       │   ├── generated/
+│       │   │   ├── catkin_make.log
+│       │   │   ├── check_urdf.log
+│       │   │   ├── check_urdf_variant.log
+│       │   │   ├── check_urdf_z1_style.log
+│       │   │   ├── check_urdf_z1_style_variant.log
+│       │   │   ├── marm.gv
+│       │   │   ├── marm.pdf
+│       │   │   ├── marm.urdf
+│       │   │   ├── marm_course_variant.urdf
+│       │   │   ├── marm_z1_style.urdf
+│       │   │   ├── marm_z1_style_course_variant.urdf
+│       │   │   ├── model_structure.md
+│       │   │   ├── rviz_validation.md
+│       │   │   ├── variant.diff
+│       │   │   ├── visual_refactor.diff
+│       │   │   ├── visual_refactor_invariants.md
+│       │   │   └── z1_style_variant.diff
+│       │   ├── report_text/
+│       │   │   ├── 第11组(1).txt
+│       │   │   ├── 第二章_机械臂建模与可视化_实验报告_答辩版.txt
+│       │   │   └── 第二章_机械臂建模与可视化_实验报告模板.txt
+│       │   └── 模型静态结构.json
+│       └── 实验结果.md
+├── 02_robot_arm_motion_control/
+│   ├── 1.1_code/
+│   │   ├── week3/
+│   │   │   └── week3.ipynb
+│   │   └── week4/
+│   │       └── Week4_堆叠.ipynb
+│   ├── 1.2_readme/
+│   │   └── README.md
+│   └── 1.3_experiment_results/
+│       ├── figures/
+│       │   ├── report_week1/
+│       │   │   ├── image2.png
+│       │   │   ├── image3.png
+│       │   │   └── media
+│       │   ├── report_week3/
+│       │   │   ├── image1.png
+│       │   │   └── image2.png
+│       │   ├── report_week4/
+│       │   │   ├── image1.png
+│       │   │   ├── image2.jpeg
+│       │   │   └── image3.png
+│       │   └── 图片索引.md
+│       ├── original_reports/
+│       │   ├── 11组_第三章_四个堆叠方块归位_实验报告.docx
+│       │   ├── 11组_第四章_四方块自动堆叠_报告模板.docx
+│       │   └── README.md
+│       ├── records/
+│       │   ├── notebook_outputs/
+│       │   │   └── Week4_堆叠.txt
+│       │   ├── report_text/
+│       │   │   ├── 11组_第三章_四个堆叠方块归位_实验报告.txt
+│       │   │   └── 11组_第四章_四方块自动堆叠_报告模板.txt
+│       │   ├── videos/
+│       │   │   ├── 11组_第三章_实验视频.mp4
+│       │   │   └── 11组_第四章_实验视频_week4.mp4
+│       │   ├── week3_报告测试表转录.csv
+│       │   └── week4_报告测试表转录.csv
+│       └── 实验结果.md
+├── 03_visual_target_recognition_and_sorting/
+│   ├── 1.1_code/
+│   │   ├── history/
+│   │   │   └── week7/
+│   │   │       └── 5.目标识别/
+│   │   │           ├── frank_week5 (1).ipynb
+│   │   │           ├── frank_week5(2).ipynb
+│   │   │           ├── frank_week6.ipynb
+│   │   │           ├── week5_fixed.ipynb
+│   │   │           ├── week6.ipynb
+│   │   │           └── week6_color_garbage_sorting.ipynb
+│   │   ├── week5/
+│   │   │   └── 5.目标识别/
+│   │   │       ├── evidence/
+│   │   │       │   ├── 20261019_144812_329070_masks.png
+│   │   │       │   ├── 20261019_144812_329070_raw.png
+│   │   │       │   └── 20261019_144812_329070_result.png
+│   │   │       ├── 2.1.在OpenCV 中调用摄像头.ipynb
+│   │   │       ├── README.md
+│   │   │       ├── self_test_week5.py
+│   │   │       ├── test01.ipynb
+│   │   │       ├── test02.ipynb
+│   │   │       ├── week5.ipynb
+│   │   │       ├── week5_color_recognition.py
+│   │   │       ├── week5_多面投票识别修复版.ipynb
+│   │   │       └── week5_多面投票识别版.ipynb
+│   │   └── week6/
+│   │       ├── bin_map.csv
+│   │       └── week6.ipynb
+│   ├── 1.2_readme/
+│   │   └── README.md
+│   └── 1.3_experiment_results/
+│       ├── figures/
+│       │   ├── camera_diagnostics/
+│       │   │   ├── camera_normal_20261019_135029.png
+│       │   │   ├── live_camera_20261019_144245.png
+│       │   │   ├── live_diagnostic_after_roi.png
+│       │   │   └── live_diagnostic_latest.png
+│       │   ├── report_week5/
+│       │   │   ├── image1.png
+│       │   │   ├── image2.png
+│       │   │   └── image3.png
+│       │   ├── report_week6/
+│       │   │   ├── image1.png
+│       │   │   ├── image2.png
+│       │   │   ├── image3.png
+│       │   │   ├── image4.png
+│       │   │   ├── image5.png
+│       │   │   └── image6.png
+│       │   ├── week5_evidence/
+│       │   │   ├── 20261019_144315_891538_masks.png
+│       │   │   ├── 20261019_144315_891538_raw.png
+│       │   │   ├── 20261019_144315_891538_result.png
+│       │   │   ├── 20261019_144709_824926_masks.png
+│       │   │   ├── 20261019_144709_824926_raw.png
+│       │   │   ├── 20261019_144709_824926_result.png
+│       │   │   ├── 20261019_144812_329070_masks.png
+│       │   │   ├── 20261019_144812_329070_raw.png
+│       │   │   ├── 20261019_144812_329070_result.png
+│       │   │   ├── 20261019_150752_455103_masks.png
+│       │   │   ├── 20261019_150752_455103_raw.png
+│       │   │   ├── 20261019_150752_455103_result.png
+│       │   │   ├── 20261019_150756_193963_masks.png
+│       │   │   ├── 20261019_150756_193963_raw.png
+│       │   │   ├── 20261019_150756_193963_result.png
+│       │   │   ├── 20261019_150756_833393_masks.png
+│       │   │   ├── 20261019_150756_833393_raw.png
+│       │   │   ├── 20261019_150756_833393_result.png
+│       │   │   ├── 20261019_150810_349198_masks.png
+│       │   │   ├── 20261019_150810_349198_raw.png
+│       │   │   ├── 20261019_150810_349198_result.png
+│       │   │   ├── 20261019_150827_837170_masks.png
+│       │   │   ├── 20261019_150827_837170_raw.png
+│       │   │   ├── 20261019_150827_837170_result.png
+│       │   │   ├── 20261019_150846_166764_masks.png
+│       │   │   ├── 20261019_150846_166764_raw.png
+│       │   │   ├── 20261019_150846_166764_result.png
+│       │   │   ├── 20261019_150859_836223_masks.png
+│       │   │   ├── 20261019_150859_836223_raw.png
+│       │   │   ├── 20261019_150859_836223_result.png
+│       │   │   ├── 20261019_150909_074566_masks.png
+│       │   │   ├── 20261019_150909_074566_raw.png
+│       │   │   ├── 20261019_150909_074566_result.png
+│       │   │   ├── 20261019_150944_475884_masks.png
+│       │   │   ├── 20261019_150944_475884_raw.png
+│       │   │   ├── 20261019_150944_475884_result.png
+│       │   │   ├── 20261019_150949_585763_masks.png
+│       │   │   ├── 20261019_150949_585763_raw.png
+│       │   │   ├── 20261019_150949_585763_result.png
+│       │   │   ├── 20261019_151057_137490_masks.png
+│       │   │   ├── 20261019_151057_137490_raw.png
+│       │   │   ├── 20261019_151057_137490_result.png
+│       │   │   ├── 20261019_151107_809384_masks.png
+│       │   │   ├── 20261019_151107_809384_raw.png
+│       │   │   ├── 20261019_151107_809384_result.png
+│       │   │   ├── 20261019_151140_881090_masks.png
+│       │   │   ├── 20261019_151140_881090_raw.png
+│       │   │   ├── 20261019_151140_881090_result.png
+│       │   │   ├── 20261019_151226_252537_masks.png
+│       │   │   ├── 20261019_151226_252537_raw.png
+│       │   │   ├── 20261019_151226_252537_result.png
+│       │   │   ├── 20261019_151236_883871_masks.png
+│       │   │   ├── 20261019_151236_883871_raw.png
+│       │   │   ├── 20261019_151236_883871_result.png
+│       │   │   ├── 20261019_151251_773364_masks.png
+│       │   │   ├── 20261019_151251_773364_raw.png
+│       │   │   ├── 20261019_151251_773364_result.png
+│       │   │   ├── 20261019_151304_489349_masks.png
+│       │   │   ├── 20261019_151304_489349_raw.png
+│       │   │   └── 20261019_151304_489349_result.png
+│       │   └── 图片索引.md
+│       ├── original_reports/
+│       │   ├── README.md
+│       │   ├── week6_.docx
+│       │   └── 实验5_目标识别_实验报告_终稿.docx
+│       ├── records/
+│       │   ├── history/
+│       │   │   └── 20261026_151542_656511/
+│       │   │       └── events.jsonl
+│       │   ├── report_text/
+│       │   │   ├── week6_.txt
+│       │   │   └── 实验5_目标识别_实验报告_终稿.txt
+│       │   ├── week5/
+│       │   │   └── week5_test_records.csv
+│       │   ├── week6/
+│       │   │   ├── bin_map.csv
+│       │   │   ├── week6_action_log.csv
+│       │   │   └── 两轮8次分拣记录.csv
+│       │   └── 统计核对.json
+│       └── 实验结果.md
+├── 04_gesture_recognition_and_interactive_manipulation/
+│   ├── 1.1_code/
+│   │   └── week7/
+│   │       ├── gesture_usb/
+│   │       │   ├── USB网络版使用说明.md
+│   │       │   ├── app_usb.py
+│   │       │   ├── arm_interrupt.py
+│   │       │   ├── control.py
+│   │       │   ├── network_link.py
+│   │       │   ├── receiver_usb.py
+│   │       │   ├── recognition.py
+│   │       │   ├── start_usb_gesture.bat
+│   │       │   └── test_usb.py
+│   │       ├── models/
+│   │       │   └── gesture_recognizer.task
+│   │       ├── gesture_recognizer.task
+│   │       ├── week5_gesture_recognition.ipynb
+│   │       ├── week7_gesture_control.ipynb
+│   │       ├── week7_jetson_arm_receiver.ipynb
+│   │       └── week7_laptop_gesture_sender.ipynb
+│   ├── 1.2_readme/
+│   │   └── README.md
+│   └── 1.3_experiment_results/
+│       ├── figures/
+│       │   ├── report_week7/
+│       │   │   ├── image1.png
+│       │   │   ├── image10.jpg
+│       │   │   ├── image11.jpg
+│       │   │   ├── image12.jpg
+│       │   │   ├── image13.jpg
+│       │   │   ├── image14.jpg
+│       │   │   ├── image15.jpg
+│       │   │   ├── image2.png
+│       │   │   ├── image3.jpg
+│       │   │   ├── image4.jpg
+│       │   │   ├── image5.jpg
+│       │   │   ├── image6.jpg
+│       │   │   ├── image7.jpg
+│       │   │   ├── image8.jpg
+│       │   │   └── image9.jpg
+│       │   └── 图片索引.md
+│       ├── original_reports/
+│       │   ├── README.md
+│       │   └── 实验七  手势识别与机械臂指令控制-第11组.docx
+│       ├── records/
+│       │   ├── report_text/
+│       │   │   └── 实验七  手势识别与机械臂指令控制-第11组.txt
+│       │   ├── app_stderr.log
+│       │   ├── app_stdout.log
+│       │   └── week7_报告10轮表转录.csv
+│       └── 实验结果.md
+├── 参考资料/
+│   ├── DICE_白熊人工智能实训平台用户手册.pdf
+│   └── 平台手册核对.md
+├── 整理记录/
+│   ├── Notebook代码索引.csv
+│   ├── 代码版本说明.md
+│   ├── 压缩包成员清单.csv
+│   ├── 原始文件清单.csv
+│   ├── 图片来源.csv
+│   ├── 复制文件校验.csv
+│   ├── 完整文件映射.csv
+│   ├── 手册更新说明.md
+│   ├── 手册配图同源核对.json
+│   ├── 静态检查报告.md
+│   ├── 静态检查结果.json
+│   └── 静态验证.py
+├── 课程要求与模板/
+│   ├── Ch6 基于目标识别的垃圾桶分拣.pdf
+│   ├── Ch7 手势识别与机械臂指令控制.pdf
+│   ├── Ch8 (考核）基于手势识别的物块搬运综合项目.pdf
+│   ├── README.md
+│   ├── 任务书2：机器人感知与控制综合实践 (1).docx
+│   └── 课程报告-机器人感知与控制综合实践 (1).docx
+├── README.md
+├── 待补充材料清单.md
+├── 文件映射表.md
+└── 目录树.txt

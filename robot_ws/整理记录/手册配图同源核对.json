@@ -1,0 +1,18 @@
+[
+  {
+    "pdf_page": 226,
+    "xref": 720,
+    "report_member": "word/media/image2.png",
+    "method": "SIFT ratio 0.7 + homography RANSAC 4px",
+    "good_matches": 718,
+    "homography_inliers": 688
+  },
+  {
+    "pdf_page": 227,
+    "xref": 723,
+    "report_member": "word/media/image3.png",
+    "method": "SIFT ratio 0.7 + homography RANSAC 4px",
+    "good_matches": 759,
+    "homography_inliers": 720
+  }
+]

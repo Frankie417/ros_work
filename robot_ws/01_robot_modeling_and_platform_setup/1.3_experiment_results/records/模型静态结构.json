@@ -1,0 +1,314 @@
+{
+  "source": "arm2026_ws/generated/marm.urdf",
+  "links": [
+    {
+      "name": "base_link"
+    },
+    {
+      "name": "link0"
+    },
+    {
+      "name": "link1"
+    },
+    {
+      "name": "link2"
+    },
+    {
+      "name": "link3"
+    },
+    {
+      "name": "link4"
+    },
+    {
+      "name": "link5"
+    },
+    {
+      "name": "link6"
+    },
+    {
+      "name": "gripper_finger_link1"
+    },
+    {
+      "name": "gripper_finger_link2"
+    },
+    {
+      "name": "grasping_frame"
+    }
+  ],
+  "joints": [
+    {
+      "name": "base_joint",
+      "type": "fixed",
+      "elements": [
+        {
+          "rpy": "0 0 0",
+          "xyz": "0 0 0.02",
+          "tag": "origin"
+        },
+        {
+          "link": "base_link",
+          "tag": "parent"
+        },
+        {
+          "link": "link0",
+          "tag": "child"
+        }
+      ]
+    },
+    {
+      "name": "joint1",
+      "type": "revolute",
+      "elements": [
+        {
+          "link": "link0",
+          "tag": "parent"
+        },
+        {
+          "link": "link1",
+          "tag": "child"
+        },
+        {
+          "rpy": "0 1.570795 0",
+          "xyz": "0 0 0.02",
+          "tag": "origin"
+        },
+        {
+          "xyz": "-1 0 0",
+          "tag": "axis"
+        },
+        {
+          "effort": "300",
+          "lower": "-3.14159",
+          "upper": "3.14159",
+          "velocity": "1",
+          "tag": "limit"
+        }
+      ]
+    },
+    {
+      "name": "joint2",
+      "type": "revolute",
+      "elements": [
+        {
+          "link": "link1",
+          "tag": "parent"
+        },
+        {
+          "link": "link2",
+          "tag": "child"
+        },
+        {
+          "rpy": "-1.570795 0 1.570795",
+          "xyz": "-0.1 0 0.0",
+          "tag": "origin"
+        },
+        {
+          "xyz": "1 0 0",
+          "tag": "axis"
+        },
+        {
+          "effort": "300",
+          "lower": "-3.14159",
+          "upper": "3.14159",
+          "velocity": "1",
+          "tag": "limit"
+        }
+      ]
+    },
+    {
+      "name": "joint3",
+      "type": "revolute",
+      "elements": [
+        {
+          "link": "link2",
+          "tag": "parent"
+        },
+        {
+          "link": "link3",
+          "tag": "child"
+        },
+        {
+          "rpy": "0 3.14159 0",
+          "xyz": "0 0 0.14",
+          "tag": "origin"
+        },
+        {
+          "xyz": "-1 0 0",
+          "tag": "axis"
+        },
+        {
+          "effort": "300",
+          "lower": "-3.14159",
+          "upper": "3.14159",
+          "velocity": "1",
+          "tag": "limit"
+        }
+      ]
+    },
+    {
+      "name": "joint4",
+      "type": "revolute",
+      "elements": [
+        {
+          "link": "link3",
+          "tag": "parent"
+        },
+        {
+          "link": "link4",
+          "tag": "child"
+        },
+        {
+          "rpy": "0 1.570795 3.14159",
+          "xyz": "0.0 0.0 -0.15",
+          "tag": "origin"
+        },
+        {
+          "xyz": "1 0 0",
+          "tag": "axis"
+        },
+        {
+          "effort": "300",
+          "lower": "-3.14159",
+          "upper": "3.14159",
+          "velocity": "1",
+          "tag": "limit"
+        }
+      ]
+    },
+    {
+      "name": "joint5",
+      "type": "revolute",
+      "elements": [
+        {
+          "link": "link4",
+          "tag": "parent"
+        },
+        {
+          "link": "link5",
+          "tag": "child"
+        },
+        {
+          "rpy": "0 1.570795 0",
+          "xyz": "0.06 0.0 0.0",
+          "tag": "origin"
+        },
+        {
+          "xyz": "1 0 0",
+          "tag": "axis"
+        },
+        {
+          "effort": "300",
+          "lower": "-3.14159",
+          "upper": "3.14159",
+          "velocity": "1",
+          "tag": "limit"
+        }
+      ]
+    },
+    {
+      "name": "joint6",
+      "type": "revolute",
+      "elements": [
+        {
+          "link": "link5",
+          "tag": "parent"
+        },
+        {
+          "link": "link6",
+          "tag": "child"
+        },
+        {
+          "rpy": "4.712384999999999 -1.570795 0",
+          "xyz": "0 0 0.06",
+          "tag": "origin"
+        },
+        {
+          "xyz": "1 0 0",
+          "tag": "axis"
+        },
+        {
+          "effort": "300",
+          "lower": "-6.28318",
+          "upper": "6.28318",
+          "velocity": "1",
+          "tag": "limit"
+        }
+      ]
+    },
+    {
+      "name": "finger_joint1",
+      "type": "prismatic",
+      "elements": [
+        {
+          "link": "link6",
+          "tag": "parent"
+        },
+        {
+          "link": "gripper_finger_link1",
+          "tag": "child"
+        },
+        {
+          "rpy": "0 0 0",
+          "xyz": "0.02 -0.03 0",
+          "tag": "origin"
+        },
+        {
+          "xyz": "0 1 0",
+          "tag": "axis"
+        },
+        {
+          "effort": "100",
+          "lower": "0",
+          "upper": "0.06",
+          "velocity": "0.02",
+          "tag": "limit"
+        }
+      ]
+    },
+    {
+      "name": "finger_joint2",
+      "type": "fixed",
+      "elements": [
+        {
+          "link": "link6",
+          "tag": "parent"
+        },
+        {
+          "link": "gripper_finger_link2",
+          "tag": "child"
+        },
+        {
+          "rpy": "0 0 0",
+          "xyz": "0.02 0.03 0",
+          "tag": "origin"
+        }
+      ]
+    },
+    {
+      "name": "grasping_frame_joint",
+      "type": "fixed",
+      "elements": [
+        {
+          "link": "link6",
+          "tag": "parent"
+        },
+        {
+          "link": "grasping_frame",
+          "tag": "child"
+        },
+        {
+          "rpy": "0 0 0",
+          "xyz": "0.06 0 0",
+          "tag": "origin"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "links": 11,
+    "joints": 10,
+    "visual": 68,
+    "collision": 9,
+    "inertial": 0
+  }
+}
