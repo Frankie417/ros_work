@@ -8,7 +8,7 @@
 - 官方 `unitree_ros` 子模块提交：`8ebecd883a842a4631fcfa98933fae586aeb6709`
 - 本地目录：`_reference/unitree_z1_ros_official_noetic/`
 
-这是只读参考副本，不属于 `marm_description` 包，也不会被当前模型的 Xacro 自动加载。`unitree_ros` 子模块包含 `z1_description`、Gazebo 相关资源和官方网格，因此完整参考副本约 770 MB；网格只用于观察官方结构，不复制到我们的模型中。
+这是经过裁剪的参考副本，不属于 `marm_description` 包，也不会被当前模型的 Xacro 自动加载。已移除其他机器人描述和非 Z1 的部分资源，保留 Z1 及其共享资源；该目录不再是完整上游副本。
 
 ## 目录结构
 
@@ -45,12 +45,12 @@
 5. `link04`、`link05`、`link06` 三段紧凑腕部；
 6. 可选固定夹爪掌部与运动夹爪部件。
 
-本项目把这种“电机壳体—承力臂—端部关节壳—腕部—法兰/夹爪”的视觉层次映射到了现有 `base_link → link0 … link6`：增加独立端环、电机罩、箱型承力壳、侧向加强脊、腕部方壳和法兰适配层。我们保留自己的 Link/Joint 名称、origin、axis、limit、collision 和 inertial，未直接复制 Z1 的尺寸或网格。
+本项目当前只使用独立的 Z1 风格教学模型，坐标系以 `marm_z1_` 为前缀。
 
 ## 官方包与本模型的边界
 
 - 官方包的 `.dae/.STL` 网格不在 `src/marm_description` 中引用。
-- 当前模型仍使用 box/cylinder/sphere 基础几何体，便于课堂解释和离线验证。
+- 当前模型仍使用 box/cylinder 基础几何体，便于课堂解释和离线验证。
 - 参考的是结构组织和工业外观语言，不声称我们的机械臂是实际 Unitree Z1。
 - `z1_controller`、`z1_sdk`、UDP、真实硬件和串口接口不属于本课程模型运行范围；本项目只使用 Xacro、URDF、TF、joint state 和 RViz。
 

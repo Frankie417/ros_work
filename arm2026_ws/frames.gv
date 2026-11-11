@@ -1,0 +1,16 @@
+digraph G {
+"marm_z1_base_link" -> "marm_z1_link00"[label="Broadcaster: /marm_z1_style_robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1794401125.958 sec old)\nBuffer length: 0.000 sec\n"];
+"marm_z1_gripper_stator" -> "marm_z1_grasping_frame"[label="Broadcaster: /marm_z1_style_robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1794401125.958 sec old)\nBuffer length: 0.000 sec\n"];
+"marm_z1_link06" -> "marm_z1_gripper_stator"[label="Broadcaster: /marm_z1_style_robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1794401125.958 sec old)\nBuffer length: 0.000 sec\n"];
+"marm_z1_link05" -> "marm_z1_link06"[label="Broadcaster: /marm_z1_style_robot_state_publisher\nAverage rate: 10.204 Hz\nMost recent transform: 1794401125.942 ( 0.016 sec old)\nBuffer length: 4.900 sec\n"];
+"marm_z1_gripper_stator" -> "marm_z1_gripper_mover"[label="Broadcaster: /marm_z1_style_robot_state_publisher\nAverage rate: 10.204 Hz\nMost recent transform: 1794401125.942 ( 0.016 sec old)\nBuffer length: 4.900 sec\n"];
+"marm_z1_link00" -> "marm_z1_link01"[label="Broadcaster: /marm_z1_style_robot_state_publisher\nAverage rate: 10.204 Hz\nMost recent transform: 1794401125.942 ( 0.016 sec old)\nBuffer length: 4.900 sec\n"];
+"marm_z1_link01" -> "marm_z1_link02"[label="Broadcaster: /marm_z1_style_robot_state_publisher\nAverage rate: 10.204 Hz\nMost recent transform: 1794401125.942 ( 0.016 sec old)\nBuffer length: 4.900 sec\n"];
+"marm_z1_link02" -> "marm_z1_link03"[label="Broadcaster: /marm_z1_style_robot_state_publisher\nAverage rate: 10.204 Hz\nMost recent transform: 1794401125.942 ( 0.016 sec old)\nBuffer length: 4.900 sec\n"];
+"marm_z1_link03" -> "marm_z1_link04"[label="Broadcaster: /marm_z1_style_robot_state_publisher\nAverage rate: 10.204 Hz\nMost recent transform: 1794401125.942 ( 0.016 sec old)\nBuffer length: 4.900 sec\n"];
+"marm_z1_link04" -> "marm_z1_link05"[label="Broadcaster: /marm_z1_style_robot_state_publisher\nAverage rate: 10.204 Hz\nMost recent transform: 1794401125.942 ( 0.016 sec old)\nBuffer length: 4.900 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1794401125.958"[ shape=plaintext ] ;
+ }->"marm_z1_base_link";
+}

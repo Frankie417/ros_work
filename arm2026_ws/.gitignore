@@ -1,0 +1,13 @@
+# Catkin generated build directories
+/build/
+/build_local/
+/devel/
+/install/
+/logs/
+.catkin_tools/
+
+# Python and editor temporary files
+__pycache__/
+*.py[cod]
+*~
+~$*
