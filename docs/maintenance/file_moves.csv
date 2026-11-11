@@ -1,0 +1,7 @@
+﻿old_path,new_path,sha256,action
+DICE_白熊人工智能实训平台用户手册.pdf,docs/references/DICE_白熊人工智能实训平台用户手册.pdf,3f291968afd52a0117231a5bd52d99547f704136236452c71f11e83012e4c3b7,"move, bytes unchanged"
+任务书2：机器人感知与控制综合实践 (1).docx,docs/reports/任务书2：机器人感知与控制综合实践 (1).docx,7d0ee00bde309c741a9da096d7cbfb28eac5971091b6bca75705e68ed716d2e1,"move, bytes unchanged"
+课程项目报告_修改完善版_预览.pdf,docs/reports/history/课程项目报告_修改完善版_预览.pdf,684055f80f37d15e4fae3c90570072033dd76b695e477a3dafd414e73d307836,"move, bytes unchanged"
+课程项目报告_最终修订版_格式规范化.docx,docs/reports/课程项目报告_最终修订版_格式规范化.docx,b4c40dd1a2ca8ed5765780d0291a885f6da50a1ae0595eb64806d5b5427e461b,"move, bytes unchanged"
+课程项目报告_最终修订版_检查报告.md,docs/reports/课程项目报告_最终修订版_检查报告.md,5e619486bb0e4638384d636d45a5e572af3d499d840adc8be211afa42a68dac6,"move, bytes unchanged"
+robot_ws/参考资料/DICE_白熊人工智能实训平台用户手册.pdf,docs/references/DICE_白熊人工智能实训平台用户手册.pdf,3f291968afd52a0117231a5bd52d99547f704136236452c71f11e83012e4c3b7,deduplicate exact bytes; canonical PDF retained

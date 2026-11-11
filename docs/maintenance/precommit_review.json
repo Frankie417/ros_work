@@ -1,0 +1,14 @@
+{
+  "branch": "main",
+  "remote": "https://github.com/Frankie417/ros_work.git",
+  "base": "36a7c717ab634ec12e98085cf39a94ddd578f646",
+  "diff_check": 0,
+  "publishable_files": 1108,
+  "stat": "298 files changed, 11435 insertions(+), 30583 deletions(-)",
+  "hardware_not_run": true,
+  "source_data_hashes_unchanged": 225,
+  "simulation_tests_passed": 10,
+  "lfs_meshes_normalized": 0,
+  "historical_git_meshes_preserved": 18,
+  "initial_push_network_issue": "Git LFS lock verification TLS timeout; optional mesh migration removed, existing LFS policy retained"
+}

@@ -1,3 +1,5 @@
+当前入口和运行步骤见 [模块README](../README.md)。以下保留原实验版本的技术核对；旧模型统计、旧采样与历史配置不覆盖当前Z1工作空间及最终报告。
+
 # 手势识别与交互搬运
 
 
@@ -76,9 +78,9 @@ One→open_gripper；Two→close_gripper；Three→home；OK确认；Five停止�
 
 ### 手册对网络与实体侧的补充
 
-[手册PDF第29页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=29)～[手册PDF第30页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=30)、[手册PDF第47页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=47)确认Micro-USB gadget网络中`192.168.55.1`是Jetson端；`:8888`是JupyterLab。本项目`:8765`、TOKEN/session/epoch是新增USB程序协议，不是手册规定的服务；不能把Jupyter密码用于代替该程序生成的TOKEN。
+[手册PDF第29页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=29)～[手册PDF第30页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=30)、[手册PDF第47页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=47)确认Micro-USB gadget网络中`192.168.55.1`是Jetson端；`:8888`是JupyterLab。本项目`:8765`、TOKEN/session/epoch是新增USB程序协议，不是手册规定的服务；不能把Jupyter密码用于代替该程序生成的TOKEN。
 
-[手册PDF第214页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=214)～[手册PDF第219页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=219)补上pyserial、uservo、/dev/ttyTHS1、115200/8N1和ID0～5的厂商依据，与接收器ID检查一致。手册Arm5DoF标定资料在PDF第226～230页；新增config已含六通道非零K/B，但仍需确认与实验箱当前标定相符。手册旧手势/Arm_Lib案例不提供本项目MediaPipe、三帧确认或hold实测结果。
+[手册PDF第214页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=214)～[手册PDF第219页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=219)补上pyserial、uservo、/dev/ttyTHS1、115200/8N1和ID0～5的厂商依据，与接收器ID检查一致。手册Arm5DoF标定资料在PDF第226～230页；新增config已含六通道非零K/B，但仍需确认与实验箱当前标定相符。手册旧手势/Arm_Lib案例不提供本项目MediaPipe、三帧确认或hold实测结果。
 
 ## 7. 安装和运行
 
@@ -112,4 +114,4 @@ python3 receiver_usb.py --hardware --sdk-dir '/home/jetson/Notebook/4.机械臂O
 实验七报告、原USB网络版使用说明及实验5第5.4节；MediaPipe官方指南：https://ai.google.dev/edge/mediapipe/solutions/vision/gesture_recognizer 。模型下载源由旧发送Notebook给出：https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task 。
 
 
-新增本地来源：[DICE白熊平台用户手册（相关章节）](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=30)；[平台手册核对与页码索引](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%B9%B3%E5%8F%B0%E6%89%8B%E5%86%8C%E6%A0%B8%E5%AF%B9.md)。
+新增本地来源：[DICE白熊平台用户手册（相关章节）](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=30)；[平台手册核对与页码索引](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%B9%B3%E5%8F%B0%E6%89%8B%E5%86%8C%E6%A0%B8%E5%AF%B9.md)。

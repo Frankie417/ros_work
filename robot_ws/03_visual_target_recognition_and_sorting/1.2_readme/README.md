@@ -1,3 +1,5 @@
+当前入口和运行步骤见 [模块README](../README.md)。以下保留原实验版本的技术核对；旧模型统计、旧采样与历史配置不覆盖当前Z1工作空间及最终报告。
+
 # 视觉目标识别与自动分拣
 
 
@@ -42,9 +44,9 @@
 
 ### 与手册示例的对应
 
-[手册PDF第266页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=266)～[手册PDF第269页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=269)确认平台是随臂USB摄像头、VideoCapture(0)和ipywidgets显示路线，支持当前代码在抓放后恢复capture_image再检测的设计。手册PDF第31页还说明出厂大程序可能占用摄像头；现场核实占用与镜像后按第266页关闭原厂程序，本次未执行。
+[手册PDF第266页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=266)～[手册PDF第269页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=269)确认平台是随臂USB摄像头、VideoCapture(0)和ipywidgets显示路线，支持当前代码在抓放后恢复capture_image再检测的设计。手册PDF第31页还说明出厂大程序可能占用摄像头；现场核实占用与镜像后按第266页关闭原厂程序，本次未执行。
 
-[手册PDF第439页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=439)～[手册PDF第445页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=445)介绍多视角HSV调节和阈值文件保存，可用于解释光照标定；但这些代码使用dofbot_config/Arm_Lib，阈值与当前项目不同，未复制覆盖。第446～448页按颜色调用固定区域抓放，也不能补证当前历史版本的camera.py/image2workspace.py或任意像素位置标定。手册未提供这些当前接口的完整配置。
+[手册PDF第439页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=439)～[手册PDF第445页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=445)介绍多视角HSV调节和阈值文件保存，可用于解释光照标定；但这些代码使用dofbot_config/Arm_Lib，阈值与当前项目不同，未复制覆盖。第446～448页按颜色调用固定区域抓放，也不能补证当前历史版本的camera.py/image2workspace.py或任意像素位置标定。手册未提供这些当前接口的完整配置。
 
 ## 4. 代码结构
 
@@ -100,7 +102,7 @@ P4抓取位姿 `(200.2,-12.8,45.0,132.7°,179.0°)`，上方位姿 `(198.2,-12.8
 
 第6周BASE硬编码 `/home/jetson/Notebook/4.机械臂OpenCV视觉处理实验`，需要该处 `arm5dof_uservo.py`、uservo/串口依赖与 `config.ARM_POSE_DICT`、标定文件。新增[arm5dof_visual_grasping](../../../arm5dof_visual_grasping/)已包含 `camera.py`、`image2workspace.py` 与vconfig标定文件；真机SDK位于同级arm5dof_python_uservo。相机类默认找config，但材料实际放在vconfig，参考抓取脚本未显式传入该路径，不能直接当作已部署入口。完整版本清单【待补充：JetPack、OpenCV、NumPy及实体SDK精确版本】。
 
-厂商参考环境见[手册PDF第19页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=19)、[手册PDF第23页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=23)：Jetson Nano/Ubuntu18.04，介绍JetPack4.4/L4T32.4.3。它补充平台背景，现场Python3.8.10及OpenCV4.5.1记录仍独立保留；实际镜像是否升级需在实验箱核对，不强行统一为手册版本。
+厂商参考环境见[手册PDF第19页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=19)、[手册PDF第23页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=23)：Jetson Nano/Ubuntu18.04，介绍JetPack4.4/L4T32.4.3。它补充平台背景，现场Python3.8.10及OpenCV4.5.1记录仍独立保留；实际镜像是否升级需在实验箱核对，不强行统一为手册版本。
 
 ## 7. 安装和运行
 
@@ -121,4 +123,4 @@ P4抓取位姿 `(200.2,-12.8,45.0,132.7°,179.0°)`，上方位姿 `(198.2,-12.8
 原week5/6报告、原README及ZIP内Ch5/Ch6任务要求；OpenCV官方说明：https://docs.opencv.org/4.x/df/d9d/tutorial_py_colorspaces.html 、https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html 。历史相机/映射库的发布来源厂商通用API/标定示例已补入手册索引；【待补充：camera/image2workspace及SDK与现场标定的版本对应】。
 
 
-新增本地来源：[DICE白熊平台用户手册（相关章节）](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=266)；[平台手册核对与页码索引](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%B9%B3%E5%8F%B0%E6%89%8B%E5%86%8C%E6%A0%B8%E5%AF%B9.md)。
+新增本地来源：[DICE白熊平台用户手册（相关章节）](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=266)；[平台手册核对与页码索引](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%B9%B3%E5%8F%B0%E6%89%8B%E5%86%8C%E6%A0%B8%E5%AF%B9.md)。

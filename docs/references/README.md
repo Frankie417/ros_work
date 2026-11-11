@@ -1,0 +1,3 @@
+# 参考资料
+
+- [DICE_白熊人工智能实训平台用户手册.pdf](DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf)

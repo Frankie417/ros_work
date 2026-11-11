@@ -8,3 +8,18 @@
 *.dae filter=lfs diff=lfs merge=lfs -text
 *.STL filter=lfs diff=lfs merge=lfs -text
 *.stl filter=lfs diff=lfs merge=lfs -text
+
+# Normalize documentation only; archived experiment code/data retain byte rules.
+*.md text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+docs/maintenance/*.py text eol=lf
+docs/maintenance/*.csv text eol=lf
+docs/maintenance/*.json text eol=lf
+docs/maintenance/*.txt text eol=lf
+arm2026_ws/src/marm_description/package.xml text eol=lf
+
+# Historical reference meshes are already ordinary Git blobs on origin.
+# Retain their storage format; no history rewrite or duplicate LFS upload.
+arm2026_ws/_reference/**/*.STL -filter !diff !merge -text
+arm2026_ws/_reference/**/*.dae -filter !diff !merge -text

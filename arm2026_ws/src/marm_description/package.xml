@@ -51,6 +51,12 @@
 
 
   <!-- The export tag contains other, unspecified, tags -->
+  <run_depend>joint_state_publisher_gui</run_depend>
+
+  <run_depend>robot_state_publisher</run_depend>
+
+  <run_depend>rviz</run_depend>
+
   <export>
     <!-- Other tools can request additional information be placed here -->
 

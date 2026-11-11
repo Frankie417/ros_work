@@ -1,3 +1,5 @@
+当前入口和运行步骤见 [模块README](../README.md)。以下保留原实验版本的技术核对；旧模型统计、旧采样与历史配置不覆盖当前Z1工作空间及最终报告。
+
 # 机器人建模与实验平台搭建
 
 
@@ -67,9 +69,9 @@
 
 ### 手册补充的平台与连接环境
 
-[手册PDF第19页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=19)～[手册PDF第23页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=23)描述Jetson Nano/4GB参考平台，使用Ubuntu18.04，介绍JetPack4.4/L4T32.4.3；这是厂商参考环境，不替代本项目WSL2 Ubuntu20.04/ROS Noetic的历史记录，也不能据此确认当前实验镜像版本。
+[手册PDF第19页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=19)～[手册PDF第23页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=23)描述Jetson Nano/4GB参考平台，使用Ubuntu18.04，介绍JetPack4.4/L4T32.4.3；这是厂商参考环境，不替代本项目WSL2 Ubuntu20.04/ROS Noetic的历史记录，也不能据此确认当前实验镜像版本。
 
-[手册PDF第29页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=29)～[手册PDF第30页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=30)、[手册PDF第47页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=47)确认Micro-USB gadget网络和Jetson端Jupyter地址`http://192.168.55.1:8888`。该地址指Jetson，不是Windows本机地址。平台整机还包括载板、听觉/传感器模块、10.1英寸屏及无线键鼠；本课题只归档实际使用的机械臂与视觉链路。手册第9.5节的dofbot包教程可作原理参考，不替换当前marm包或复制手册模型尺寸。
+[手册PDF第29页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=29)～[手册PDF第30页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=30)、[手册PDF第47页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=47)确认Micro-USB gadget网络和Jetson端Jupyter地址`http://192.168.55.1:8888`。该地址指Jetson，不是Windows本机地址。平台整机还包括载板、听觉/传感器模块、10.1英寸屏及无线键鼠；本课题只归档实际使用的机械臂与视觉链路。手册第9.5节的dofbot包教程可作原理参考，不替换当前marm包或复制手册模型尺寸。
 
 ## 7. 安装和运行
 
@@ -96,7 +98,7 @@ roslaunch marm_description view_marm.launch model:=marm
 
 ### 平台手册中的摄像头排查
 
-[手册PDF第266页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=266)给出`ls -l /dev/video*`及`cv2.VideoCapture(0)`的排查路线。原厂启动程序可能占用相机；仅在确认现场仍为该厂商镜像、脚本存在且需要结束原厂程序时，按手册执行`sh ~/whitebear/kill_YahboomArm.sh`。本次未运行该命令；摄像头可见不等于已发布ROS图像话题。
+[手册PDF第266页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=266)给出`ls -l /dev/video*`及`cv2.VideoCapture(0)`的排查路线。原厂启动程序可能占用相机；仅在确认现场仍为该厂商镜像、脚本存在且需要结束原厂程序时，按手册执行`sh ~/whitebear/kill_YahboomArm.sh`。本次未运行该命令；摄像头可见不等于已发布ROS图像话题。
 
 手册查系统镜像的资料盘位置为“白熊人工智能实验平台资料/开发环境/系统镜像/whitebear_nano_xxxxxx.img”（PDF第27页）。这提供恢复来源线索，归档不进行镜像烧录。
 
@@ -118,4 +120,4 @@ WSLg视口捕捉黑屏：既有记录保留了节点、话题和TF，计划在�
 - 原参考副本注明的Unitree仓库：https://github.com/unitreerobotics/z1_ros （noetic，提交d3bafd38fb48e805096da7abb0c19a15b636975d）；仅外观/组织参考。
 
 
-新增本地来源：[DICE白熊平台用户手册（相关章节）](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=19)；[平台手册核对与页码索引](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%B9%B3%E5%8F%B0%E6%89%8B%E5%86%8C%E6%A0%B8%E5%AF%B9.md)。
+新增本地来源：[DICE白熊平台用户手册（相关章节）](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=19)；[平台手册核对与页码索引](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%B9%B3%E5%8F%B0%E6%89%8B%E5%86%8C%E6%A0%B8%E5%AF%B9.md)。

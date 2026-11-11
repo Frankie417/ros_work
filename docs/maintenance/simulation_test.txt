@@ -1,0 +1,4 @@
+2026-11-11
+Existing gesture_usb/test_usb.py: 10 tests, OK (6.117s); simulation and localhost only.
+Existing week5 self_test_week5.py: synthetic red/yellow/green/blue blocks recognized.
+These are software checks, not new physical experiment results.

@@ -2,7 +2,7 @@
 
 本工作空间用于在 **WSL2 Ubuntu / ROS1 Noetic** 中查看 Z1 风格机械臂，使用 RViz 显示模型，使用关节滑条调整姿态。
 
-- 工作空间：`/root/arm2026_ws`
+- 工作空间：`~/ros_work/arm2026_ws`
 - ROS 包名：`marm_description`（保留原包名）
 - 默认启动文件：`view_marm_z1_style.launch`
 - 本项目是使用基础几何体构建的 Z1 风格教学模型，启动命令不会连接或控制真实机械臂。
@@ -12,9 +12,9 @@
 打开 WSL2 Ubuntu 终端，复制执行以下命令。**每行末尾不要加反斜杠 `\`。**
 
 ```bash
-cd /root/arm2026_ws
+cd ~/ros_work/arm2026_ws
 source /opt/ros/noetic/setup.bash
-source /root/arm2026_ws/devel/setup.bash
+source ~/ros_work/arm2026_ws/devel/setup.bash
 roslaunch marm_description view_marm_z1_style.launch
 ```
 
@@ -84,7 +84,7 @@ TF → Frames → marm_z1_grasping_frame → Position
 
 ```bash
 source /opt/ros/noetic/setup.bash
-source /root/arm2026_ws/devel/setup.bash
+source ~/ros_work/arm2026_ws/devel/setup.bash
 rosrun rqt_tf_tree rqt_tf_tree
 ```
 
@@ -100,7 +100,7 @@ rosrun rqt_tf_tree rqt_tf_tree
 
 ```bash
 source /opt/ros/noetic/setup.bash
-source /root/arm2026_ws/devel/setup.bash
+source ~/ros_work/arm2026_ws/devel/setup.bash
 roslaunch marm_description view_marm_z1_style_course_variant.launch
 ```
 
@@ -124,20 +124,20 @@ source /opt/ros/noetic/setup.bash
 
 ```bash
 source /opt/ros/noetic/setup.bash
-source /root/arm2026_ws/devel/setup.bash
+source ~/ros_work/arm2026_ws/devel/setup.bash
 rospack find marm_description
 ```
 
 正常应输出：
 
 ```text
-/root/arm2026_ws/src/marm_description
+~/ros_work/arm2026_ws/src/marm_description
 ```
 
 如果工作空间刚移动过，可先在当前终端补充搜索路径：
 
 ```bash
-export ROS_PACKAGE_PATH="/root/arm2026_ws/src:$ROS_PACKAGE_PATH"
+export ROS_PACKAGE_PATH="~/ros_work/arm2026_ws/src:$ROS_PACKAGE_PATH"
 rospack profile
 roslaunch marm_description view_marm_z1_style.launch
 ```
@@ -147,10 +147,10 @@ roslaunch marm_description view_marm_z1_style.launch
 在工作空间中执行：
 
 ```bash
-cd /root/arm2026_ws
+cd ~/ros_work/arm2026_ws
 source /opt/ros/noetic/setup.bash
 catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
-source /root/arm2026_ws/devel/setup.bash
+source ~/ros_work/arm2026_ws/devel/setup.bash
 roslaunch marm_description view_marm_z1_style.launch
 ```
 

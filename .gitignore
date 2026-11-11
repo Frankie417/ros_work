@@ -1,0 +1,32 @@
+# Local environments and caches
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv*/
+venv/
+env/
+build/
+devel/
+install/
+.catkin_tools/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+~$*
+~WRL*.tmp
+*.swp
+*.swo
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+token.json
+# Local Word render QA and downloaded staging; original experiment logs stay tracked.
+/tmp/
+/runtime/

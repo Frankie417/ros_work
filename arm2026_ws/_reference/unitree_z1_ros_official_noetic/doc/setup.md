@@ -37,7 +37,7 @@ cmake .. \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_INSTALL_PREFIX=/usr/local \
   -DBUILD_PYTHON_INTERFACE=OFF \
-  -DBUILD_TESTING=OFF 
+  -DBUILD_TESTING=OFF
 
 make
 sudo make install
@@ -50,7 +50,7 @@ export CMAKE_PREFIX_PATH=/usr/local:$CMAKE_PREFIX_PATH
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
 ```
 
-+ [pybind11](https://github.com/pybind/pybind11) 
++ [pybind11](https://github.com/pybind/pybind11)
 
 If you want to use python interface, please execute the following commands.
 

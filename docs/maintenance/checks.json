@@ -1,0 +1,884 @@
+{
+  "counts": {
+    "markdown_local_links": 613,
+    "xml_files": 101,
+    "python_files": 111,
+    "notebooks": 77,
+    "notebook_code_cells": 545,
+    "ipython_magic_cells": 8,
+    "current_urdf_links": 11,
+    "current_urdf_joints": 10
+  },
+  "original_source_data_files_unchanged": 225,
+  "issues": [],
+  "high_confidence_secrets": [],
+  "imports": {
+    "arm2026_ws/scripts/preview_z1_gripper.py": [
+      "argparse",
+      "itertools",
+      "math",
+      "matplotlib",
+      "mpl_toolkits",
+      "numpy",
+      "pathlib",
+      "xml"
+    ],
+    "arm2026_ws/_reference/unitree_z1_ros_official_noetic/z1_sdk/scripts/example_joint_ctrl.py": [
+      "rospkg",
+      "sys",
+      "time",
+      "unitree_arm_interface"
+    ],
+    "arm2026_ws/_reference/unitree_z1_ros_official_noetic/z1_sdk/scripts/example_lowcmd.py": [
+      "numpy",
+      "rospkg",
+      "sys",
+      "time",
+      "unitree_arm_interface"
+    ],
+    "arm5dof_python_pybullet/arm5dof_kinematic.py": [
+      "math",
+      "numpy",
+      "pose",
+      "transform"
+    ],
+    "arm5dof_python_pybullet/arm5dof_pybullet.py": [
+      "arm5dof_kinematic",
+      "collections",
+      "config",
+      "logging",
+      "minimum_jerk",
+      "numpy",
+      "pathlib",
+      "pybullet",
+      "pybullet_data",
+      "time",
+      "turtle"
+    ],
+    "arm5dof_python_pybullet/arm_application.py": [
+      "math",
+      "numpy",
+      "os",
+      "time",
+      "transform",
+      "yaml"
+    ],
+    "arm5dof_python_pybullet/config.py": [
+      "math",
+      "numpy"
+    ],
+    "arm5dof_python_pybullet/minimum_jerk.py": [
+      "numpy"
+    ],
+    "arm5dof_python_pybullet/pose.py": [
+      "math",
+      "numpy",
+      "quaternion",
+      "transform"
+    ],
+    "arm5dof_python_pybullet/quaternion.py": [
+      "numpy",
+      "transform"
+    ],
+    "arm5dof_python_pybullet/real_scene.py": [
+      "math",
+      "numpy",
+      "pathlib",
+      "pybullet"
+    ],
+    "arm5dof_python_pybullet/run_real_examples_in_sim.py": [
+      "argparse",
+      "arm5dof_pybullet",
+      "numpy",
+      "pybullet",
+      "real_scene",
+      "time"
+    ],
+    "arm5dof_python_pybullet/transform.py": [
+      "math",
+      "numpy"
+    ],
+    "arm5dof_python_uservo/annotation_img9points.py": [
+      "camera",
+      "cv2",
+      "logging",
+      "math",
+      "numpy",
+      "pickle",
+      "subprocess",
+      "time",
+      "yaml"
+    ],
+    "arm5dof_python_uservo/arm5dof_kinematic.py": [
+      "math",
+      "numpy",
+      "pose",
+      "transform"
+    ],
+    "arm5dof_python_uservo/arm5dof_uservo.py": [
+      "arm5dof_kinematic",
+      "config",
+      "logging",
+      "minimum_jerk",
+      "numpy",
+      "os",
+      "serial",
+      "time",
+      "uservo"
+    ],
+    "arm5dof_python_uservo/arm_application.py": [
+      "math",
+      "numpy",
+      "os",
+      "time",
+      "transform",
+      "yaml"
+    ],
+    "arm5dof_python_uservo/arm_damping_mode.py": [
+      "arm5dof_uservo",
+      "config",
+      "math",
+      "time"
+    ],
+    "arm5dof_python_uservo/config.py": [
+      "math",
+      "numpy"
+    ],
+    "arm5dof_python_uservo/icp.py": [
+      "cv2",
+      "numpy"
+    ],
+    "arm5dof_python_uservo/minimum_jerk.py": [
+      "numpy"
+    ],
+    "arm5dof_python_uservo/pose.py": [
+      "math",
+      "numpy",
+      "quaternion",
+      "transform"
+    ],
+    "arm5dof_python_uservo/quaternion.py": [
+      "numpy",
+      "transform"
+    ],
+    "arm5dof_python_uservo/set_arm_pose_by_name.py": [
+      "absl",
+      "arm5dof_uservo",
+      "config",
+      "logging",
+      "sys"
+    ],
+    "arm5dof_python_uservo/transform.py": [
+      "math",
+      "numpy"
+    ],
+    "arm5dof_python_uservo/uservo.py": [
+      "logging",
+      "serial",
+      "struct",
+      "time"
+    ],
+    "arm5dof_visual_grasping/annotation_img9points.py": [
+      "camera",
+      "cv2",
+      "logging",
+      "math",
+      "numpy",
+      "pickle",
+      "subprocess",
+      "time",
+      "yaml"
+    ],
+    "arm5dof_visual_grasping/camera.py": [
+      "absl",
+      "cv2",
+      "logging",
+      "math",
+      "numpy",
+      "os",
+      "pickle",
+      "sys",
+      "time",
+      "yaml"
+    ],
+    "arm5dof_visual_grasping/camera_calibration.py": [
+      "cv2",
+      "glob",
+      "numpy",
+      "yaml"
+    ],
+    "arm5dof_visual_grasping/color_block_detector.py": [
+      "camera",
+      "cv2",
+      "glob",
+      "numpy",
+      "pickle",
+      "scipy",
+      "time"
+    ],
+    "arm5dof_visual_grasping/grab_color_block.py": [
+      "arm5dof_uservo",
+      "arm_application",
+      "camera",
+      "color_block_detector",
+      "cv2",
+      "image2workspace",
+      "math",
+      "numpy",
+      "sys",
+      "time"
+    ],
+    "arm5dof_visual_grasping/image2workspace.py": [
+      "camera",
+      "cv2",
+      "numpy",
+      "os",
+      "yaml"
+    ],
+    "docs/maintenance/check_project.py": [
+      "ast",
+      "collections",
+      "csv",
+      "hashlib",
+      "json",
+      "os",
+      "pathlib",
+      "re",
+      "urllib",
+      "xml"
+    ],
+    "docs/maintenance/check_xacro.py": [
+      "catkin_pkg",
+      "json",
+      "pathlib",
+      "sys",
+      "xacro",
+      "xml"
+    ],
+    "docs/maintenance/organize_semester.py": [
+      "collections",
+      "csv",
+      "hashlib",
+      "json",
+      "os",
+      "pathlib",
+      "subprocess"
+    ],
+    "robot_ws/01_robot_modeling_and_platform_setup/1.1_code/arm2026_ws/scripts/preview_z1_gripper.py": [
+      "argparse",
+      "itertools",
+      "math",
+      "matplotlib",
+      "mpl_toolkits",
+      "numpy",
+      "pathlib",
+      "xml"
+    ],
+    "robot_ws/03_visual_target_recognition_and_sorting/1.1_code/week5/5.目标识别/self_test_week5.py": [
+      "cv2",
+      "numpy",
+      "week5_color_recognition"
+    ],
+    "robot_ws/03_visual_target_recognition_and_sorting/1.1_code/week5/5.目标识别/week5_color_recognition.py": [
+      "__future__",
+      "argparse",
+      "csv",
+      "cv2",
+      "datetime",
+      "numpy",
+      "pathlib",
+      "sys",
+      "time"
+    ],
+    "robot_ws/04_gesture_recognition_and_interactive_manipulation/1.1_code/week7/gesture_usb/app_usb.py": [
+      "PIL",
+      "control",
+      "csv",
+      "cv2",
+      "datetime",
+      "json",
+      "mediapipe",
+      "network_link",
+      "pathlib",
+      "queue",
+      "recognition",
+      "threading",
+      "time",
+      "tkinter"
+    ],
+    "robot_ws/04_gesture_recognition_and_interactive_manipulation/1.1_code/week7/gesture_usb/arm_interrupt.py": [
+      "arm5dof_uservo",
+      "math",
+      "pathlib",
+      "sys",
+      "threading",
+      "time",
+      "uservo"
+    ],
+    "robot_ws/04_gesture_recognition_and_interactive_manipulation/1.1_code/week7/gesture_usb/control.py": [
+      "time"
+    ],
+    "robot_ws/04_gesture_recognition_and_interactive_manipulation/1.1_code/week7/gesture_usb/network_link.py": [
+      "json",
+      "threading",
+      "time",
+      "urllib",
+      "uuid"
+    ],
+    "robot_ws/04_gesture_recognition_and_interactive_manipulation/1.1_code/week7/gesture_usb/receiver_usb.py": [
+      "argparse",
+      "arm_interrupt",
+      "collections",
+      "http",
+      "json",
+      "secrets",
+      "socketserver",
+      "threading",
+      "time",
+      "uuid"
+    ],
+    "robot_ws/04_gesture_recognition_and_interactive_manipulation/1.1_code/week7/gesture_usb/recognition.py": [
+      "cv2",
+      "math",
+      "mediapipe",
+      "numpy",
+      "pathlib",
+      "time"
+    ],
+    "robot_ws/04_gesture_recognition_and_interactive_manipulation/1.1_code/week7/gesture_usb/test_usb.py": [
+      "arm_interrupt",
+      "control",
+      "network_link",
+      "receiver_usb",
+      "threading",
+      "time",
+      "types",
+      "unittest"
+    ],
+    "robot_ws/整理记录/静态验证.py": [
+      "ast",
+      "csv",
+      "hashlib",
+      "json",
+      "pathlib",
+      "re",
+      "sys",
+      "urllib",
+      "xml",
+      "zipfile"
+    ],
+    "week5/5.目标识别/self_test_week5.py": [
+      "cv2",
+      "numpy",
+      "week5_color_recognition"
+    ],
+    "week5/5.目标识别/week5_color_recognition.py": [
+      "__future__",
+      "argparse",
+      "csv",
+      "cv2",
+      "datetime",
+      "numpy",
+      "pathlib",
+      "sys",
+      "time"
+    ],
+    "week5/5.目标识别/gesture_usb/app_usb.py": [
+      "PIL",
+      "control",
+      "csv",
+      "cv2",
+      "datetime",
+      "json",
+      "mediapipe",
+      "network_link",
+      "pathlib",
+      "queue",
+      "recognition",
+      "threading",
+      "time",
+      "tkinter"
+    ],
+    "week5/5.目标识别/gesture_usb/arm_interrupt.py": [
+      "arm5dof_uservo",
+      "math",
+      "pathlib",
+      "sys",
+      "threading",
+      "time",
+      "uservo"
+    ],
+    "week5/5.目标识别/gesture_usb/control.py": [
+      "time"
+    ],
+    "week5/5.目标识别/gesture_usb/network_link.py": [
+      "json",
+      "threading",
+      "time",
+      "urllib",
+      "uuid"
+    ],
+    "week5/5.目标识别/gesture_usb/receiver_usb.py": [
+      "argparse",
+      "arm_interrupt",
+      "collections",
+      "http",
+      "json",
+      "secrets",
+      "socketserver",
+      "threading",
+      "time",
+      "uuid"
+    ],
+    "week5/5.目标识别/gesture_usb/recognition.py": [
+      "cv2",
+      "math",
+      "mediapipe",
+      "numpy",
+      "pathlib",
+      "time"
+    ],
+    "week5/5.目标识别/gesture_usb/test_usb.py": [
+      "arm_interrupt",
+      "control",
+      "network_link",
+      "receiver_usb",
+      "threading",
+      "time",
+      "types",
+      "unittest"
+    ],
+    "week7/5.目标识别/self_test_week5.py": [
+      "cv2",
+      "numpy",
+      "week5_color_recognition"
+    ],
+    "week7/5.目标识别/week5_color_recognition.py": [
+      "__future__",
+      "argparse",
+      "csv",
+      "cv2",
+      "datetime",
+      "numpy",
+      "pathlib",
+      "sys",
+      "time"
+    ],
+    "week7/5.目标识别/gesture_usb/app_usb.py": [
+      "PIL",
+      "control",
+      "csv",
+      "cv2",
+      "datetime",
+      "json",
+      "mediapipe",
+      "network_link",
+      "pathlib",
+      "queue",
+      "recognition",
+      "threading",
+      "time",
+      "tkinter"
+    ],
+    "week7/5.目标识别/gesture_usb/arm_interrupt.py": [
+      "arm5dof_uservo",
+      "math",
+      "pathlib",
+      "sys",
+      "threading",
+      "time",
+      "uservo"
+    ],
+    "week7/5.目标识别/gesture_usb/control.py": [
+      "time"
+    ],
+    "week7/5.目标识别/gesture_usb/network_link.py": [
+      "json",
+      "threading",
+      "time",
+      "urllib",
+      "uuid"
+    ],
+    "week7/5.目标识别/gesture_usb/receiver_usb.py": [
+      "argparse",
+      "arm_interrupt",
+      "collections",
+      "http",
+      "json",
+      "secrets",
+      "socketserver",
+      "threading",
+      "time",
+      "uuid"
+    ],
+    "week7/5.目标识别/gesture_usb/recognition.py": [
+      "cv2",
+      "math",
+      "mediapipe",
+      "numpy",
+      "pathlib",
+      "time"
+    ],
+    "week7/5.目标识别/gesture_usb/test_usb.py": [
+      "arm_interrupt",
+      "control",
+      "network_link",
+      "receiver_usb",
+      "threading",
+      "time",
+      "types",
+      "unittest"
+    ],
+    "week7/gesture_usb/app_usb.py": [
+      "PIL",
+      "control",
+      "csv",
+      "cv2",
+      "datetime",
+      "json",
+      "mediapipe",
+      "network_link",
+      "pathlib",
+      "queue",
+      "recognition",
+      "threading",
+      "time",
+      "tkinter"
+    ],
+    "week7/gesture_usb/arm_interrupt.py": [
+      "arm5dof_uservo",
+      "math",
+      "pathlib",
+      "sys",
+      "threading",
+      "time",
+      "uservo"
+    ],
+    "week7/gesture_usb/control.py": [
+      "time"
+    ],
+    "week7/gesture_usb/network_link.py": [
+      "json",
+      "threading",
+      "time",
+      "urllib",
+      "uuid"
+    ],
+    "week7/gesture_usb/receiver_usb.py": [
+      "argparse",
+      "arm_interrupt",
+      "collections",
+      "http",
+      "json",
+      "secrets",
+      "socketserver",
+      "threading",
+      "time",
+      "uuid"
+    ],
+    "week7/gesture_usb/recognition.py": [
+      "cv2",
+      "math",
+      "mediapipe",
+      "numpy",
+      "pathlib",
+      "time"
+    ],
+    "week7/gesture_usb/test_usb.py": [
+      "arm_interrupt",
+      "control",
+      "network_link",
+      "receiver_usb",
+      "threading",
+      "time",
+      "types",
+      "unittest"
+    ],
+    "第11组_课程项目提交包/源代码/03_视觉分拣/参考命令行/self_test_week5.py": [
+      "cv2",
+      "numpy",
+      "week5_color_recognition"
+    ],
+    "第11组_课程项目提交包/源代码/03_视觉分拣/参考命令行/week5_color_recognition.py": [
+      "__future__",
+      "argparse",
+      "csv",
+      "cv2",
+      "datetime",
+      "numpy",
+      "pathlib",
+      "sys",
+      "time"
+    ],
+    "第11组_课程项目提交包/源代码/04_手势交互/gesture_usb/app_usb.py": [
+      "PIL",
+      "control",
+      "csv",
+      "cv2",
+      "datetime",
+      "json",
+      "mediapipe",
+      "network_link",
+      "pathlib",
+      "queue",
+      "recognition",
+      "threading",
+      "time",
+      "tkinter"
+    ],
+    "第11组_课程项目提交包/源代码/04_手势交互/gesture_usb/arm_interrupt.py": [
+      "arm5dof_uservo",
+      "math",
+      "pathlib",
+      "sys",
+      "threading",
+      "time",
+      "uservo"
+    ],
+    "第11组_课程项目提交包/源代码/04_手势交互/gesture_usb/control.py": [
+      "time"
+    ],
+    "第11组_课程项目提交包/源代码/04_手势交互/gesture_usb/network_link.py": [
+      "json",
+      "threading",
+      "time",
+      "urllib",
+      "uuid"
+    ],
+    "第11组_课程项目提交包/源代码/04_手势交互/gesture_usb/receiver_usb.py": [
+      "argparse",
+      "arm_interrupt",
+      "collections",
+      "http",
+      "json",
+      "secrets",
+      "socketserver",
+      "threading",
+      "time",
+      "uuid"
+    ],
+    "第11组_课程项目提交包/源代码/04_手势交互/gesture_usb/recognition.py": [
+      "cv2",
+      "math",
+      "mediapipe",
+      "numpy",
+      "pathlib",
+      "time"
+    ],
+    "第11组_课程项目提交包/源代码/04_手势交互/gesture_usb/test_usb.py": [
+      "arm_interrupt",
+      "control",
+      "network_link",
+      "receiver_usb",
+      "threading",
+      "time",
+      "types",
+      "unittest"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_python_uservo/annotation_img9points.py": [
+      "camera",
+      "cv2",
+      "logging",
+      "math",
+      "numpy",
+      "pickle",
+      "subprocess",
+      "time",
+      "yaml"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_python_uservo/arm5dof_kinematic.py": [
+      "math",
+      "numpy",
+      "pose",
+      "transform"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_python_uservo/arm5dof_uservo.py": [
+      "arm5dof_kinematic",
+      "config",
+      "logging",
+      "minimum_jerk",
+      "numpy",
+      "os",
+      "serial",
+      "time",
+      "uservo"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_python_uservo/arm_application.py": [
+      "math",
+      "numpy",
+      "os",
+      "time",
+      "transform",
+      "yaml"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_python_uservo/arm_damping_mode.py": [
+      "arm5dof_uservo",
+      "config",
+      "math",
+      "time"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_python_uservo/config.py": [
+      "math",
+      "numpy"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_python_uservo/icp.py": [
+      "cv2",
+      "numpy"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_python_uservo/minimum_jerk.py": [
+      "numpy"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_python_uservo/pose.py": [
+      "math",
+      "numpy",
+      "quaternion",
+      "transform"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_python_uservo/quaternion.py": [
+      "numpy",
+      "transform"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_python_uservo/set_arm_pose_by_name.py": [
+      "absl",
+      "arm5dof_uservo",
+      "config",
+      "logging",
+      "sys"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_python_uservo/transform.py": [
+      "math",
+      "numpy"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_python_uservo/uservo.py": [
+      "logging",
+      "serial",
+      "struct",
+      "time"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_visual_grasping/annotation_img9points.py": [
+      "camera",
+      "cv2",
+      "logging",
+      "math",
+      "numpy",
+      "pickle",
+      "subprocess",
+      "time",
+      "yaml"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_visual_grasping/camera.py": [
+      "absl",
+      "cv2",
+      "logging",
+      "math",
+      "numpy",
+      "os",
+      "pickle",
+      "sys",
+      "time",
+      "yaml"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_visual_grasping/camera_calibration.py": [
+      "cv2",
+      "glob",
+      "numpy",
+      "yaml"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_visual_grasping/color_block_detector.py": [
+      "camera",
+      "cv2",
+      "glob",
+      "numpy",
+      "pickle",
+      "scipy",
+      "time"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_visual_grasping/grab_color_block.py": [
+      "arm5dof_uservo",
+      "arm_application",
+      "camera",
+      "color_block_detector",
+      "cv2",
+      "image2workspace",
+      "math",
+      "numpy",
+      "sys",
+      "time"
+    ],
+    "第11组_课程项目提交包/源代码/SDK/arm5dof_visual_grasping/image2workspace.py": [
+      "camera",
+      "cv2",
+      "numpy",
+      "os",
+      "yaml"
+    ],
+    "第11组_课程项目提交包/源代码/仿真参考/arm5dof_python_pybullet/arm5dof_kinematic.py": [
+      "math",
+      "numpy",
+      "pose",
+      "transform"
+    ],
+    "第11组_课程项目提交包/源代码/仿真参考/arm5dof_python_pybullet/arm5dof_pybullet.py": [
+      "arm5dof_kinematic",
+      "collections",
+      "config",
+      "logging",
+      "minimum_jerk",
+      "numpy",
+      "pathlib",
+      "pybullet",
+      "pybullet_data",
+      "time",
+      "turtle"
+    ],
+    "第11组_课程项目提交包/源代码/仿真参考/arm5dof_python_pybullet/arm_application.py": [
+      "math",
+      "numpy",
+      "os",
+      "time",
+      "transform",
+      "yaml"
+    ],
+    "第11组_课程项目提交包/源代码/仿真参考/arm5dof_python_pybullet/config.py": [
+      "math",
+      "numpy"
+    ],
+    "第11组_课程项目提交包/源代码/仿真参考/arm5dof_python_pybullet/minimum_jerk.py": [
+      "numpy"
+    ],
+    "第11组_课程项目提交包/源代码/仿真参考/arm5dof_python_pybullet/pose.py": [
+      "math",
+      "numpy",
+      "quaternion",
+      "transform"
+    ],
+    "第11组_课程项目提交包/源代码/仿真参考/arm5dof_python_pybullet/quaternion.py": [
+      "numpy",
+      "transform"
+    ],
+    "第11组_课程项目提交包/源代码/仿真参考/arm5dof_python_pybullet/real_scene.py": [
+      "math",
+      "numpy",
+      "pathlib",
+      "pybullet"
+    ],
+    "第11组_课程项目提交包/源代码/仿真参考/arm5dof_python_pybullet/run_real_examples_in_sim.py": [
+      "argparse",
+      "arm5dof_pybullet",
+      "numpy",
+      "pybullet",
+      "real_scene",
+      "time"
+    ],
+    "第11组_课程项目提交包/源代码/仿真参考/arm5dof_python_pybullet/transform.py": [
+      "math",
+      "numpy"
+    ]
+  },
+  "not_run": [
+    "ROS/catkin build and RViz GUI on Linux",
+    "Jetson serial, camera and physical arm",
+    "Windows camera/MediaPipe live recognition",
+    "New physical repetition trials"
+  ]
+}
