@@ -72,13 +72,13 @@ One→open_gripper；Two→close_gripper；Three→home；OK确认；Five停止�
 
 报告记Windows11/Python3.11.9；本机依赖OpenCV、NumPy、MediaPipe Tasks、Pillow、Tkinter。Jetson接收器注明Python3.6+兼容分支，实体SDK还需NumPy/pyserial及config，不需要在Jetson安装MediaPipe。模型随代码归档；确切MediaPipe/OpenCV/SDK版本【待补充：本机与Jetson依赖锁定清单】。
 
-本机bat所需 `.venv-gesture` 不存在，实体SDK `arm5dof_uservo.py`、`uservo.py` 与config均缺失。报告提到的 `week7_gesture_control.py` 当前不存在，实际可见主入口是app_usb.py；不能引用缺失包装器作为已可用命令。
+本机bat所需 `.venv-gesture` 不存在，实体SDK `arm5dof_uservo.py`、`uservo.py` 与config现已补齐至[arm5dof_python_uservo](../../../arm5dof_python_uservo/)，接收器可通过--sdk-dir指定此目录。报告提到的 `week7_gesture_control.py` 当前不存在，实际可见主入口是app_usb.py；不能引用缺失包装器作为已可用命令。
 
 ### 手册对网络与实体侧的补充
 
 [手册PDF第29页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=29)～[手册PDF第30页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=30)、[手册PDF第47页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=47)确认Micro-USB gadget网络中`192.168.55.1`是Jetson端；`:8888`是JupyterLab。本项目`:8765`、TOKEN/session/epoch是新增USB程序协议，不是手册规定的服务；不能把Jupyter密码用于代替该程序生成的TOKEN。
 
-[手册PDF第214页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=214)～[手册PDF第219页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=219)补上pyserial、uservo、/dev/ttyTHS1、115200/8N1和ID0～5的厂商依据，与接收器ID检查一致。手册Arm5DoF标定资料在PDF第226～230页；现场仍需恢复对应config和完整SDK。手册旧手势/Arm_Lib案例不提供本项目MediaPipe、三帧确认或hold实测结果。
+[手册PDF第214页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=214)～[手册PDF第219页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=219)补上pyserial、uservo、/dev/ttyTHS1、115200/8N1和ID0～5的厂商依据，与接收器ID检查一致。手册Arm5DoF标定资料在PDF第226～230页；新增config已含六通道非零K/B，但仍需确认与实验箱当前标定相符。手册旧手势/Arm_Lib案例不提供本项目MediaPipe、三帧确认或hold实测结果。
 
 ## 7. 安装和运行
 
@@ -91,7 +91,7 @@ python app_usb.py
 
 Jetson仅上传receiver_usb.py和arm_interrupt.py即可进行接收端演练：`python3 receiver_usb.py`，默认simulation。把当次TOKEN填入本机界面，连接并查询，解除停止、准备、选择、OK。旧Notebook服务不提供session/epoch/token这一套协议，不能与新NetworkLink混接。
 
-原说明中的真机命令（待在现场补齐SDK并核对后使用，本次不执行）：
+原说明中的真机命令（待在现场核对新增SDK、配置及串口后使用，本次不执行）：
 
 ```bash
 python3 receiver_usb.py --hardware --sdk-dir '/home/jetson/Notebook/4.机械臂OpenCV视觉处理实验' --arm-port /dev/ttyTHS1

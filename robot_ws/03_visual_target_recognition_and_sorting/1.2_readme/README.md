@@ -13,7 +13,7 @@
 |---|---|---|---|
 | BGR→HSV与四色分割 | USB相机OpenCV帧 | Mask、类别 | 有源码、60张同帧证据、28条测试 |
 | 像素目标定位 | 轮廓外接矩形 | 像素中心 | 已实现；不是矩法重心 |
-| 相机到机械臂坐标映射 | 像素/标定参数 | 工作空间坐标 | 主版本不使用；历史路线依赖缺失文件 |
+| 相机到机械臂坐标映射 | 像素/标定参数 | 工作空间坐标 | 主版本不使用；参考映射源码及标定已补，现场有效性待核实 |
 | 颜色到垃圾桶映射 | red/yellow/green/blue | 固定桶上方位姿 | 已实现，表与代码可核对 |
 | 固定P4抓取投放 | 连续5帧唯一同色 | 抓放、回零、拍摄位 | 报告/人工CSV记8/8成功 |
 | 任意像素位置抓取 | 标定转换后的物体坐标 | 随目标移动的抓取点 | 【待补充：标定文件和对应联调证据】 |
@@ -98,7 +98,7 @@ P4抓取位姿 `(200.2,-12.8,45.0,132.7°,179.0°)`，上方位姿 `(198.2,-12.8
 
 报告记Jetson/JetPack、USB UVC相机640×480、Python3.8、OpenCV、NumPy、Jupyter、ipywidgets；主Notebook元数据还记录Python3.11.9，说明元数据与报告环境并非同一环境证明。摄像头示例原输出提供OpenCV4.5.1记录，不能据此确定全部版本都使用4.5.1。
 
-第6周BASE硬编码 `/home/jetson/Notebook/4.机械臂OpenCV视觉处理实验`，需要该处 `arm5dof_uservo.py`、uservo/串口依赖与 `config.ARM_POSE_DICT`、标定文件。历史坐标映射版本还依赖 `camera.py`、`image2workspace.py` 与相机标定文件，当前均缺失。完整版本清单【待补充：JetPack、OpenCV、NumPy及实体SDK精确版本】。
+第6周BASE硬编码 `/home/jetson/Notebook/4.机械臂OpenCV视觉处理实验`，需要该处 `arm5dof_uservo.py`、uservo/串口依赖与 `config.ARM_POSE_DICT`、标定文件。新增[arm5dof_visual_grasping](../../../arm5dof_visual_grasping/)已包含 `camera.py`、`image2workspace.py` 与vconfig标定文件；真机SDK位于同级arm5dof_python_uservo。相机类默认找config，但材料实际放在vconfig，参考抓取脚本未显式传入该路径，不能直接当作已部署入口。完整版本清单【待补充：JetPack、OpenCV、NumPy及实体SDK精确版本】。
 
 厂商参考环境见[手册PDF第19页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=19)、[手册PDF第23页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=23)：Jetson Nano/Ubuntu18.04，介绍JetPack4.4/L4T32.4.3。它补充平台背景，现场Python3.8.10及OpenCV4.5.1记录仍独立保留；实际镜像是否升级需在实验箱核对，不强行统一为手册版本。
 
@@ -118,7 +118,7 @@ P4抓取位姿 `(200.2,-12.8,45.0,132.7°,179.0°)`，上方位姿 `(198.2,-12.8
 
 ## 10. 参考资料
 
-原week5/6报告、原README及ZIP内Ch5/Ch6任务要求；OpenCV官方说明：https://docs.opencv.org/4.x/df/d9d/tutorial_py_colorspaces.html 、https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html 。历史相机/映射库的发布来源厂商通用API/标定示例已补入手册索引；【待补充：当前camera/image2workspace工具与部署SDK的版本文档】。
+原week5/6报告、原README及ZIP内Ch5/Ch6任务要求；OpenCV官方说明：https://docs.opencv.org/4.x/df/d9d/tutorial_py_colorspaces.html 、https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html 。历史相机/映射库的发布来源厂商通用API/标定示例已补入手册索引；【待补充：camera/image2workspace及SDK与现场标定的版本对应】。
 
 
 新增本地来源：[DICE白熊平台用户手册（相关章节）](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=266)；[平台手册核对与页码索引](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%B9%B3%E5%8F%B0%E6%89%8B%E5%86%8C%E6%A0%B8%E5%AF%B9.md)。

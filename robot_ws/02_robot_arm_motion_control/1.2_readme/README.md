@@ -21,7 +21,7 @@
 
 ## 3. 技术原理
 
-任务采用示教点位和课程SDK运动学，不在Notebook中重新实现完整正逆运动学。五参数位姿为 `(x,y,z,pitch,roll)`：位置单位mm，表中角度为°，调用SDK前用 `radians` 变为rad。第4周调用 `Arm5DoFKinematic().inverse_kinematic(x,y,z_adjusted,pitch,roll)` 返回关节解列表，空列表表示不可达，预检取最后一组解显示角度。该签名与模块3所用机械臂包装类的逆解接口不同。手册PDF第233～241页已补充该类Arm5DoF求解器的代码示例，几何原理可据此解释；当前部署SDK文件仍缺失，不能直接确认与手册示例逐字一致。
+任务采用示教点位和课程SDK运动学，不在Notebook中重新实现完整正逆运动学。五参数位姿为 `(x,y,z,pitch,roll)`：位置单位mm，表中角度为°，调用SDK前用 `radians` 变为rad。第4周调用 `Arm5DoFKinematic().inverse_kinematic(x,y,z_adjusted,pitch,roll)` 返回关节解列表，空列表表示不可达，预检取最后一组解显示角度。该签名与模块3所用机械臂包装类的逆解接口不同。手册PDF第233～241页已补充该类Arm5DoF求解器的代码示例，几何原理可据此解释；新增真机库已提供该求解器；D1=70、A1=0、A2=80、A3=76.15、A4=185.4mm，与手册几何长度一致。θ6对应joint5/ID4，夹爪left_gripper_joint对应ID5。
 
 通用正运动学关系为 `T_0_tool(q)=∏T_i(q_i)`：q为各关节角，T_i为相邻坐标系变换，乘积顺序沿基座到工具。逆运动学求q使变换达到给定位姿。模块1的六转动关节教学模型尚未与本实体SDK统一，不能直接代入当作实物模型。
 
@@ -43,7 +43,7 @@
 └── week4/Week4_堆叠.ipynb
 ```
 
-共享SDK应在Notebook工作目录，或其子目录 `2.机械臂实验/` 中。归档保留两本Notebook，不拆分函数。实物USB执行器在模块4 `1.1_code/week7/gesture_usb/arm_interrupt.py`，不再复制到这里。
+共享SDK现位于工作区根目录[arm5dof_python_uservo](../../../arm5dof_python_uservo/)。原Notebook只搜索当前工作目录和其子目录 `2.机械臂实验/`；现场应在SDK目录启动Jupyter并打开Notebook，或在运行副本配置搜索路径。归档保留两本Notebook，不拆分函数。实物USB执行器在模块4 `1.1_code/week7/gesture_usb/arm_interrupt.py`，不再复制到这里。
 
 ## 5. 核心代码说明
 
@@ -63,23 +63,23 @@
 
 第4周来源顺序P0→P2→P8→P6，分别堆到第1～4层；`MOVE_T=0.8s`、`GRIPPER_T=0.5s`。四个Cell各调用一次run_single_block，并非一键全塔；上层退出高度差只有5mm和1mm是报告分析的风险，尚无修改后对照测试。
 
-SDK接口按调用处核对：`set_tool_pose(xyz,tool_pitch,tool_roll,T,is_soft_move=True,is_wait=True)`；False表示调用处认为无解/失败；其他成功返回语义待SDK确认。`gripper_open/close(T,is_wait=True)`执行开合，`home()`回预设位。其返回值未在这些Notebook中完整判断，不能据此推断物块已成功夹住。
+SDK接口按调用处核对：`set_tool_pose(xyz,tool_pitch,tool_roll,T,is_soft_move=True,is_wait=True)`；False表示调用处认为无解/失败；新增源码确认：软运动分支执行结束后没有显式成功返回，正常可能返回None；非软分支返回批量关节设置/等待的结果。is_wait主要作用于非软分支，软分支在调用线程循环插补但没有统一的末尾到位确认。`gripper_open/close(T,is_wait=True)`执行开合，`home()`回预设位。其返回值未在这些Notebook中完整判断，不能据此推断物块已成功夹住。
 
 ### 手册底层API补充
 
 [手册PDF第214页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=214)～[手册PDF第217页](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=217)：`uservo.UartServoManager`接收pyserial串口对象；默认`/dev/ttyTHS1`、115200、8N1，ID0～5。`query_servo_angle(id)`返回原始角°；`set_servo_angle(id,angle,interval=...,velocity=...,t_acc=...,t_dec=...,power=...)`中interval/t_acc/t_dec单位ms，velocity单位°/s，power单位mW；`wait(timeout)`的timeout单位ms。不能与set_tool_pose的T秒混用。
 
-底层驱动资料路径线索为`/Notebook/1.基础实验/uservo.py`，机械臂标定示例在Notebook的机械臂实验目录。恢复SDK时还应核对手册Arm5DoFKinematic依赖的transform、pose及config。手册的`Arm_Lib.Arm_Device`用另一套编号/直接角度接口，不能替换当前Arm5DoFUServo。
+底层驱动资料路径线索为`/Notebook/1.基础实验/uservo.py`，机械臂标定示例在Notebook的机械臂实验目录。新增目录已包含Arm5DoFKinematic依赖的transform、pose、quaternion和config；源码与配置核对见[新增SDK核对](../../参考资料/新增SDK核对.md)。手册的`Arm_Lib.Arm_Device`用另一套编号/直接角度接口，不能替换当前Arm5DoFUServo。
 
 ## 6. 环境与依赖
 
-Notebook元数据Python3.8.10，课程平台Jetson/Linux/Jupyter。week3依赖 `arm5dof_uservo.py`；week4还需要 `arm5dof_kinematic.py`、NumPy和配置文件。当前项目目录及原ZIP仍无完整部署SDK/config；新增PDF含uservo接口表和Arm5DoFKinematic示例，提供恢复线索，但不是可直接导入的SDK文件包。确切SDK、NumPy、pyserial和JetPack版本【待补充：实体控制环境版本及SDK发布版本】。
+Notebook元数据Python3.8.10，课程平台Jetson/Linux/Jupyter。week3依赖 `arm5dof_uservo.py`；week4还需要 `arm5dof_kinematic.py`、NumPy和配置文件。新增arm5dof_python_uservo已补齐控制源码及config；相机相关代码与标定文件分别位于arm5dof_visual_grasping及vconfig。SDK文件到位后仍需确认它与实测Notebook、舵机配置的版本对应。确切SDK、NumPy、pyserial和JetPack版本【待补充：实体控制环境版本及SDK发布版本】。
 
 ## 7. 安装和运行
 
-本次只解析Notebook，不执行Cell。以下是原平台复现说明，**待验证**：恢复该实验箱的原SDK及config，把Notebook放入课程工作目录或SDK同级工作区，再用匹配环境启动 `jupyter notebook`。
+最终实验结果按原报告采用，姿态无逆解已在调试中解决。归位Notebook参数Cell明确记录Roll85763.7°取模为83.7°，再修正到可行边界90°，其他实测位姿不变；调用时转为rad。此前归档SDK组合的离线19/20结果保留在核对记录中，用于说明文件版本差异，不作为最终实验失败或覆盖成功记录的依据。
 
-第3周默认DRY_RUN=True，但首个Cell仍导入SDK，SDK缺失时不能直接预览。第4周没有全局预览开关，执行四个动作Cell会直接连接并运动，必须按原现场操作分块执行。不要使用“运行全部”进行静态验收。归档不自动生成替代SDK、不调整控制参数。
+第3周默认DRY_RUN=True，但首个Cell仍导入SDK，仍需匹配SDK搜索路径后才能预览。第4周没有全局预览开关，执行四个动作Cell会直接连接并运动，必须按原现场操作分块执行。不要使用“运行全部”进行静态验收。归档不自动生成替代SDK、不调整控制参数。
 
 ## 8. 实验结果索引
 
@@ -87,11 +87,11 @@ Notebook元数据Python3.8.10，课程平台Jetson/Linux/Jupyter。week3依赖 `
 
 ## 9. 常见问题与解决方法
 
-第3周第二、三层Roll原值归一化83.7°时逆解不可行，现代码为90°；报告记第三轮恢复成功，仍须按SDK运行时判定。第2轮P0偏移未测方向和距离，原因尚未确定。第4周第一轮高层失败，后两轮成功；提高退出点和调整释放参数是后续方案，无修改后实验可核实。标定K接近0的问题尚待复测，不沿用异常参数。
+第3周第二、三层Roll原值归一化83.7°时逆解不可行，现代码为90°；报告记第三轮恢复成功，仍须按SDK运行时判定。第2轮P0偏移未测方向和距离，原因尚未确定。第4周第一轮高层失败，后两轮成功；提高退出点和调整释放参数是后续方案，无修改后实验可核实。首周第5通道两姿态相同的问题仍待核实；新增config的六通道K均非零，不能据此反推首周采样过程已被验证。
 
 ## 10. 参考资料
 
-week1/3/4原始报告、Notebook内代码与已存输出；SDK类名为Arm5DoFUServo、Arm5DoFKinematic。厂商说明已由本地手册补齐；【待补充：实际部署SDK文件、版本及发布资料包】。
+week1/3/4原始报告、Notebook内代码与已存输出；SDK类名为Arm5DoFUServo、Arm5DoFKinematic。厂商说明已由本地手册补齐；【待补充：新增SDK与实际实验版本的对应及发布记录】。
 
 
 新增本地来源：[DICE白熊平台用户手册（相关章节）](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=229)；[平台手册核对与页码索引](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%B9%B3%E5%8F%B0%E6%89%8B%E5%86%8C%E6%A0%B8%E5%AF%B9.md)。

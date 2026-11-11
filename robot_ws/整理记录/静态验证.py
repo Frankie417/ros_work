@@ -146,7 +146,7 @@ def main():
               'known_runtime_gaps': [
                   'catkin顶层CMake入口为路径文本；原模型两个launch的model参数无默认值',
                   '主marm.urdf无标准inertial，包未完整声明运行依赖',
-                  '实体DICE SDK/config、本机虚拟环境、相机标定缺失',
+                  'SDK/config与相机标定已补；SDK搜索路径、视觉vconfig路径及现场版本仍待核实',
                   '手势原始22条回执/录像及完整搬运任务链缺失']}
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 1 if failures else 0

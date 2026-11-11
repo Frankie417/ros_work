@@ -1,0 +1,674 @@
+{
+  "scope": "只解析新增源码和配置，执行纯运动学数值核对；未创建串口、相机、机械臂或仿真GUI；未执行动作Cell。",
+  "files": 234,
+  "python_files": 58,
+  "syntax_failures": [],
+  "geometry_mm": {
+    "D1": 70.0,
+    "A1": 0.0,
+    "A2": 80.0,
+    "A3": 76.15,
+    "A4": 185.4
+  },
+  "joint_lower_rad": [
+    -1.5708,
+    -2.58,
+    -0.7854,
+    -2.0944,
+    -1.5708
+  ],
+  "joint_upper_rad": [
+    1.5708,
+    -0.2,
+    2.18166,
+    2.4,
+    1.5708
+  ],
+  "roundtrip": {
+    "samples": 64,
+    "solved": 64,
+    "max_position_error_mm": 2.5899566935549956e-09,
+    "max_angle_error_rad": 8.881784197001252e-16
+  },
+  "week4_poses": {
+    "tested": 20,
+    "solved": 19,
+    "z_compensation": [
+      0.1405,
+      -33.972
+    ],
+    "results": [
+      {
+        "block": 1,
+        "stage": "pick_above_P0",
+        "input": [
+          236.4,
+          35.4,
+          84.89053175689665,
+          2.181661564992912,
+          3.1276300195738385
+        ],
+        "solutions": 2
+      },
+      {
+        "block": 1,
+        "stage": "pick_P0",
+        "input": [
+          248.4,
+          38.4,
+          31.620758148400235,
+          2.181661564992912,
+          3.1276300195738385
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 1,
+        "stage": "place_above",
+        "input": [
+          198.2,
+          -11.2,
+          73.41952551170337,
+          2.316051917396475,
+          2.522000769131806
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 1,
+        "stage": "place",
+        "input": [
+          198.2,
+          -11.2,
+          26.919525511703377,
+          2.316051917396475,
+          2.522000769131806
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 1,
+        "stage": "retreat",
+        "input": [
+          198.2,
+          -11.2,
+          73.41952551170337,
+          2.316051917396475,
+          2.522000769131806
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 2,
+        "stage": "pick_above_P2",
+        "input": [
+          220.2,
+          -62.1,
+          83.45086785028832,
+          2.260201381332657,
+          3.1276300195738385
+        ],
+        "solutions": 0
+      },
+      {
+        "block": 2,
+        "stage": "pick_P2",
+        "input": [
+          235.2,
+          -68.1,
+          30.708896101382216,
+          2.356194490192345,
+          3.1276300195738385
+        ],
+        "solutions": 2
+      },
+      {
+        "block": 2,
+        "stage": "place_above",
+        "input": [
+          193.6,
+          -11.3,
+          72.77509439853173,
+          2.181661564992912,
+          1.6057029118347832
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 2,
+        "stage": "place",
+        "input": [
+          192.5,
+          -11.3,
+          53.12080848463297,
+          2.181661564992912,
+          1.6057029118347832
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 2,
+        "stage": "retreat",
+        "input": [
+          193.6,
+          -11.3,
+          72.77509439853173,
+          2.181661564992912,
+          1.6057029118347832
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 3,
+        "stage": "pick_above_P8",
+        "input": [
+          132.7,
+          -58.4,
+          61.67600476098374,
+          2.443460952792061,
+          3.1276300195738385
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 3,
+        "stage": "pick_P8",
+        "input": [
+          145.7,
+          -58.4,
+          8.360047400930739,
+          2.443460952792061,
+          3.1276300195738385
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 3,
+        "stage": "place_above",
+        "input": [
+          189.8,
+          -15.0,
+          84.77804881976854,
+          2.10835773640915,
+          1.6057029118347832
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 3,
+        "stage": "place",
+        "input": [
+          188.8,
+          -15.0,
+          79.63798784685932,
+          2.10835773640915,
+          1.6057029118347832
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 3,
+        "stage": "retreat",
+        "input": [
+          189.8,
+          -15.0,
+          84.77804881976854,
+          2.10835773640915,
+          1.6057029118347832
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 4,
+        "stage": "pick_above_P6",
+        "input": [
+          136.1,
+          37.8,
+          61.15186745427119,
+          2.443460952792061,
+          3.1276300195738385
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 4,
+        "stage": "pick_P6",
+        "input": [
+          155.1,
+          40.8,
+          8.838910623408154,
+          2.443460952792061,
+          3.1276300195738385
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 4,
+        "stage": "place_above",
+        "input": [
+          190.6,
+          -9.9,
+          105.84339950089313,
+          1.9984019935335073,
+          2.522000769131806
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 4,
+        "stage": "place",
+        "input": [
+          190.6,
+          -9.9,
+          104.84339950089313,
+          1.9984019935335073,
+          2.522000769131806
+        ],
+        "solutions": 1
+      },
+      {
+        "block": 4,
+        "stage": "retreat",
+        "input": [
+          190.6,
+          -9.9,
+          105.84339950089313,
+          1.9984019935335073,
+          2.522000769131806
+        ],
+        "solutions": 1
+      }
+    ]
+  },
+  "imports": {
+    "arm5dof_python_uservo/.ipynb_checkpoints/annotation_img9points-checkpoint.py": [
+      "import time",
+      "import cv2",
+      "import numpy as np",
+      "import pickle",
+      "import subprocess",
+      "import math",
+      "import yaml",
+      "import logging",
+      "from camera import Camera"
+    ],
+    "arm5dof_python_uservo/.ipynb_checkpoints/arm5dof_kinematic-checkpoint.py": [
+      "import math",
+      "import numpy as np",
+      "from transform import *",
+      "from pose import Pose"
+    ],
+    "arm5dof_python_uservo/.ipynb_checkpoints/arm5dof_uservo-checkpoint.py": [
+      "import os",
+      "import time",
+      "import logging",
+      "import serial",
+      "import numpy as np",
+      "from config import *",
+      "from uservo import UartServoManager",
+      "from arm5dof_kinematic import Arm5DoFKinematic",
+      "from minimum_jerk import minimum_jerk_plan, minimum_jerk_seq"
+    ],
+    "arm5dof_python_uservo/.ipynb_checkpoints/arm_application-checkpoint.py": [
+      "import os",
+      "import math",
+      "import numpy as np",
+      "import yaml",
+      "import time",
+      "from transform import Transform"
+    ],
+    "arm5dof_python_uservo/.ipynb_checkpoints/arm_damping_mode-checkpoint.py": [
+      "import time",
+      "import math",
+      "from arm5dof_uservo import Arm5DoFUServo",
+      "from config import *"
+    ],
+    "arm5dof_python_uservo/.ipynb_checkpoints/config-checkpoint.py": [
+      "import math",
+      "import numpy as np"
+    ],
+    "arm5dof_python_uservo/.ipynb_checkpoints/icp-checkpoint.py": [
+      "import numpy as np",
+      "import cv2"
+    ],
+    "arm5dof_python_uservo/.ipynb_checkpoints/minimum_jerk-checkpoint.py": [
+      "import numpy as np"
+    ],
+    "arm5dof_python_uservo/.ipynb_checkpoints/pose-checkpoint.py": [
+      "import math",
+      "import numpy as np",
+      "from transform import Transform",
+      "from quaternion import Quaternion"
+    ],
+    "arm5dof_python_uservo/.ipynb_checkpoints/quaternion-checkpoint.py": [
+      "import numpy as np",
+      "from numpy import sin, cos, arcsin, arccos",
+      "from transform import Transform"
+    ],
+    "arm5dof_python_uservo/.ipynb_checkpoints/set_arm_pose_by_name-checkpoint.py": [
+      "import sys",
+      "import logging",
+      "from absl import app",
+      "from absl import flags",
+      "from arm5dof_uservo import Arm5DoFUServo",
+      "from config import *"
+    ],
+    "arm5dof_python_uservo/.ipynb_checkpoints/transform-checkpoint.py": [
+      "import math",
+      "import numpy as np",
+      "from numpy import sin, cos, pi"
+    ],
+    "arm5dof_python_uservo/.ipynb_checkpoints/uservo-checkpoint.py": [
+      "import time",
+      "import logging",
+      "import serial",
+      "import struct"
+    ],
+    "arm5dof_python_uservo/annotation_img9points.py": [
+      "import time",
+      "import cv2",
+      "import numpy as np",
+      "import pickle",
+      "import subprocess",
+      "import math",
+      "import yaml",
+      "import logging",
+      "from camera import Camera"
+    ],
+    "arm5dof_python_uservo/arm5dof_kinematic.py": [
+      "import math",
+      "import numpy as np",
+      "from transform import *",
+      "from pose import Pose"
+    ],
+    "arm5dof_python_uservo/arm5dof_uservo.py": [
+      "import os",
+      "import time",
+      "import logging",
+      "import serial",
+      "import numpy as np",
+      "from config import *",
+      "from uservo import UartServoManager",
+      "from arm5dof_kinematic import Arm5DoFKinematic",
+      "from minimum_jerk import minimum_jerk_plan, minimum_jerk_seq"
+    ],
+    "arm5dof_python_uservo/arm_application.py": [
+      "import os",
+      "import math",
+      "import numpy as np",
+      "import yaml",
+      "import time",
+      "from transform import Transform"
+    ],
+    "arm5dof_python_uservo/arm_damping_mode.py": [
+      "import time",
+      "import math",
+      "from arm5dof_uservo import Arm5DoFUServo",
+      "from config import *"
+    ],
+    "arm5dof_python_uservo/config.py": [
+      "import math",
+      "import numpy as np"
+    ],
+    "arm5dof_python_uservo/icp.py": [
+      "import numpy as np",
+      "import cv2"
+    ],
+    "arm5dof_python_uservo/minimum_jerk.py": [
+      "import numpy as np"
+    ],
+    "arm5dof_python_uservo/pose.py": [
+      "import math",
+      "import numpy as np",
+      "from transform import Transform",
+      "from quaternion import Quaternion"
+    ],
+    "arm5dof_python_uservo/quaternion.py": [
+      "import numpy as np",
+      "from numpy import sin, cos, arcsin, arccos",
+      "from transform import Transform"
+    ],
+    "arm5dof_python_uservo/set_arm_pose_by_name.py": [
+      "import sys",
+      "import logging",
+      "from absl import app",
+      "from absl import flags",
+      "from arm5dof_uservo import Arm5DoFUServo",
+      "from config import *"
+    ],
+    "arm5dof_python_uservo/transform.py": [
+      "import math",
+      "import numpy as np",
+      "from numpy import sin, cos, pi"
+    ],
+    "arm5dof_python_uservo/uservo.py": [
+      "import time",
+      "import logging",
+      "import serial",
+      "import struct"
+    ],
+    "arm5dof_python_pybullet/.ipynb_checkpoints/__init__-checkpoint.py": [],
+    "arm5dof_python_pybullet/.ipynb_checkpoints/arm5dof_kinematic-checkpoint.py": [
+      "import math",
+      "import numpy as np",
+      "from transform import *",
+      "from pose import Pose"
+    ],
+    "arm5dof_python_pybullet/.ipynb_checkpoints/arm5dof_pybullet-checkpoint.py": [
+      "import time",
+      "from turtle import st",
+      "import numpy as np",
+      "from collections import namedtuple",
+      "import logging",
+      "import pybullet",
+      "import pybullet_data",
+      "from arm5dof_kinematic import Arm5DoFKinematic",
+      "from minimum_jerk import minimum_jerk_plan, minimum_jerk_seq",
+      "from config import *"
+    ],
+    "arm5dof_python_pybullet/.ipynb_checkpoints/arm_application-checkpoint.py": [
+      "import os",
+      "import math",
+      "import numpy as np",
+      "import yaml",
+      "import time",
+      "from transform import Transform"
+    ],
+    "arm5dof_python_pybullet/.ipynb_checkpoints/config-checkpoint.py": [
+      "import math",
+      "import numpy as np"
+    ],
+    "arm5dof_python_pybullet/.ipynb_checkpoints/minimum_jerk-checkpoint.py": [
+      "import numpy as np"
+    ],
+    "arm5dof_python_pybullet/.ipynb_checkpoints/pose-checkpoint.py": [
+      "import math",
+      "import numpy as np",
+      "from transform import Transform",
+      "from quaternion import Quaternion"
+    ],
+    "arm5dof_python_pybullet/.ipynb_checkpoints/quaternion-checkpoint.py": [
+      "import numpy as np",
+      "from numpy import sin, cos, arcsin, arccos",
+      "from transform import Transform"
+    ],
+    "arm5dof_python_pybullet/.ipynb_checkpoints/transform-checkpoint.py": [
+      "import math",
+      "import numpy as np",
+      "from numpy import sin, cos, pi"
+    ],
+    "arm5dof_python_pybullet/__init__.py": [],
+    "arm5dof_python_pybullet/arm5dof_kinematic.py": [
+      "import math",
+      "import numpy as np",
+      "from transform import *",
+      "from pose import Pose"
+    ],
+    "arm5dof_python_pybullet/arm5dof_pybullet.py": [
+      "import time",
+      "from turtle import st",
+      "import numpy as np",
+      "from collections import namedtuple",
+      "import logging",
+      "import pybullet",
+      "import pybullet_data",
+      "from pathlib import Path",
+      "from arm5dof_kinematic import Arm5DoFKinematic",
+      "from minimum_jerk import minimum_jerk_plan, minimum_jerk_seq",
+      "from config import *"
+    ],
+    "arm5dof_python_pybullet/arm_application.py": [
+      "import os",
+      "import math",
+      "import numpy as np",
+      "import yaml",
+      "import time",
+      "from transform import Transform"
+    ],
+    "arm5dof_python_pybullet/config.py": [
+      "import math",
+      "import numpy as np"
+    ],
+    "arm5dof_python_pybullet/minimum_jerk.py": [
+      "import numpy as np"
+    ],
+    "arm5dof_python_pybullet/pose.py": [
+      "import math",
+      "import numpy as np",
+      "from transform import Transform",
+      "from quaternion import Quaternion"
+    ],
+    "arm5dof_python_pybullet/quaternion.py": [
+      "import numpy as np",
+      "from numpy import sin, cos, arcsin, arccos",
+      "from transform import Transform"
+    ],
+    "arm5dof_python_pybullet/real_scene.py": [
+      "from pathlib import Path",
+      "import math",
+      "import numpy as np",
+      "import pybullet as p"
+    ],
+    "arm5dof_python_pybullet/run_real_examples_in_sim.py": [
+      "import argparse",
+      "import time",
+      "import numpy as np",
+      "import pybullet as p",
+      "from arm5dof_pybullet import Arm5DoFPyBullet",
+      "from real_scene import RealWorkspaceScene"
+    ],
+    "arm5dof_python_pybullet/transform.py": [
+      "import math",
+      "import numpy as np",
+      "from numpy import sin, cos, pi"
+    ],
+    "arm5dof_visual_grasping/.ipynb_checkpoints/annotation_img9points-checkpoint.py": [
+      "import time",
+      "import cv2",
+      "import numpy as np",
+      "import pickle",
+      "import subprocess",
+      "import math",
+      "import yaml",
+      "import logging",
+      "from camera import Camera"
+    ],
+    "arm5dof_visual_grasping/.ipynb_checkpoints/camera-checkpoint.py": [
+      "import os",
+      "import time",
+      "import pickle",
+      "import math",
+      "import yaml",
+      "import logging",
+      "import numpy as np",
+      "import cv2"
+    ],
+    "arm5dof_visual_grasping/.ipynb_checkpoints/camera_calibration-checkpoint.py": [
+      "import cv2",
+      "import numpy as np",
+      "import yaml",
+      "from glob import glob"
+    ],
+    "arm5dof_visual_grasping/.ipynb_checkpoints/color_block_detector-checkpoint.py": [
+      "import time",
+      "import glob",
+      "import pickle",
+      "import cv2",
+      "import numpy as np",
+      "from scipy.stats import multivariate_normal",
+      "from camera import Camera"
+    ],
+    "arm5dof_visual_grasping/.ipynb_checkpoints/grab_color_block-checkpoint.py": [
+      "import sys",
+      "import math",
+      "import time",
+      "import cv2",
+      "import numpy as np",
+      "from camera import Camera",
+      "from color_block_detector import ColorBlockDetector",
+      "from image2workspace import Image2Workspace",
+      "from arm5dof_uservo import Arm5DoFUServo",
+      "from arm_application import ArmApplication"
+    ],
+    "arm5dof_visual_grasping/.ipynb_checkpoints/image2workspace-checkpoint.py": [
+      "import os",
+      "import numpy as np",
+      "import cv2",
+      "import yaml"
+    ],
+    "arm5dof_visual_grasping/annotation_img9points.py": [
+      "import time",
+      "import cv2",
+      "import numpy as np",
+      "import pickle",
+      "import subprocess",
+      "import math",
+      "import yaml",
+      "import logging",
+      "from camera import Camera"
+    ],
+    "arm5dof_visual_grasping/camera.py": [
+      "import os",
+      "import time",
+      "import pickle",
+      "import math",
+      "import yaml",
+      "import logging",
+      "import numpy as np",
+      "import cv2"
+    ],
+    "arm5dof_visual_grasping/camera_calibration.py": [
+      "import cv2",
+      "import numpy as np",
+      "import yaml",
+      "from glob import glob"
+    ],
+    "arm5dof_visual_grasping/color_block_detector.py": [
+      "import time",
+      "import glob",
+      "import pickle",
+      "import cv2",
+      "import numpy as np",
+      "from scipy.stats import multivariate_normal",
+      "from camera import Camera"
+    ],
+    "arm5dof_visual_grasping/grab_color_block.py": [
+      "import sys",
+      "import math",
+      "import time",
+      "import cv2",
+      "import numpy as np",
+      "from camera import Camera",
+      "from color_block_detector import ColorBlockDetector",
+      "from image2workspace import Image2Workspace",
+      "from arm5dof_uservo import Arm5DoFUServo",
+      "from arm_application import ArmApplication"
+    ],
+    "arm5dof_visual_grasping/image2workspace.py": [
+      "import os",
+      "import numpy as np",
+      "import cv2",
+      "import yaml"
+    ]
+  }
+}

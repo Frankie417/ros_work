@@ -2,6 +2,8 @@
 
 本仓库归档“第五学期”工作区的原始实验资料和整理后的四模块工程，课程代码为 S0610350。统一阅读入口为 [robot_ws 项目说明](robot_ws/README.md)。
 
+最新成果：[独立课程项目报告](第11组_机械臂颜色分拣与手势交互控制_课程项目报告.docx) · [报告与配套代码提交包](第11组_课程项目提交包/README.md)。实验结果以原实验报告及现场确认的调试结论为准，代码副本差异集中登记，不覆盖实测数据。
+
 ## 目录
 
 | 路径 | 内容 |
@@ -9,8 +11,12 @@
 | [robot_ws/](robot_ws/) | 四模块代码、技术 README、实验结果、图片、原报告索引与来源校验 |
 | [arm2026_ws/](arm2026_ws/) | 原 ROS 建模工程、历史验证、构建产物及第三方参考 |
 | week1、week3、week4、week5、week6、week7 | 各周原始 Notebook、报告、图像、视频及测试记录 |
+| [arm5dof_python_uservo/](arm5dof_python_uservo/) | 新增真机控制库、运动学、关节与工作台配置 |
+| [arm5dof_python_pybullet/](arm5dof_python_pybullet/) | 独立 PyBullet 仿真代码与模型 |
+| [arm5dof_visual_grasping/](arm5dof_visual_grasping/) | 相机标定、像素到工作台映射与参考抓取程序 |
+| [新增SDK核对](robot_ws/参考资料/新增SDK核对.md) | 几何参数、接口行为、标定路径及离线逆解结果 |
 | [平台手册核对](robot_ws/参考资料/平台手册核对.md) | DICE 平台手册、接口、标定与运动学的页码说明 |
-| [待补充材料清单](robot_ws/待补充材料清单.md) | SDK、环境、版本对应和实测证据的现有缺口 |
+| [待补充材料清单](robot_ws/待补充材料清单.md) | SDK版本对应、环境与实测证据的现有缺口 |
 | [文件映射表](robot_ws/文件映射表.md) | 原始文件与四模块归档的对应关系 |
 
 ## 下载完整资料
@@ -28,7 +34,7 @@ GitHub 网页下载源码 ZIP 不一定包含完整 LFS 文件，复现时应按
 
 ## 运行与验证
 
-各模块运行步骤和依赖见 robot_ws。当前工作区包含原始 build/devel、检查点和历史副本，保留它们用于完整归档；实际开发使用 robot_ws 指定的主版本，并在原 Linux/Jetson 环境重新构建。DICE 部署 SDK/config 等尚缺项已在清单中标注。
+各模块运行步骤和依赖见 robot_ws。当前工作区包含原始 build/devel、检查点和历史副本，保留它们用于完整归档；实际开发使用 robot_ws 指定的主版本，并在原 Linux/Jetson 环境重新构建。新增真机 SDK/config 和相机标定文件已到位；版本对应、配置路径及现场验证事项见新增SDK核对和待补充清单。
 
 只读检查归档完整性：
 
