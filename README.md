@@ -47,7 +47,6 @@ ros_work/
 ├── arm5dof_visual_grasping/                相机标定与坐标映射参考
 ├── arm5dof_python_pybullet/                PyBullet 仿真参考
 ├── week1/、week3/…week7/                   原实验代码及记录
-├── 第11组_课程项目提交包/                  历史提交快照
 ├── docs/                                  原报告、整理与维护记录
 ├── .gitattributes                         Git LFS 与文件字节规则
 └── .gitignore                             本地缓存和环境排除规则
