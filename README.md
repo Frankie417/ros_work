@@ -1,259 +1,221 @@
-# 第五学期课程项目
+# 机器人感知与控制综合实践
 
-《机器人感知与控制综合实践》第11组项目，使用 DICE 白熊人工智能实训平台。先按下面的使用说明选择程序，再阅读项目结构、实验结果和技术文档。
+第11组第五学期课程项目，使用 DICE 白熊人工智能实训平台，完成机械臂建模与可视化、示教点运动、HSV 颜色识别与固定区域分拣，以及手势触发机械臂基础动作。
 
-## 先选择要运行的代码
+实体机械臂由 Jetson 上的 Python SDK 控制；Windows 端识别手势，通过 Micro-USB 网络上的 HTTP 服务发送命令；ROS1 Noetic 用于教学模型显示与 TF 验证。模型显示、Jetson 实验和 Windows 手势识别分别启动。
 
-| 你要做什么 | 使用哪些代码 | 在哪里运行 |
+最新成果：[最终课程项目报告](homework/reports/课程项目报告.docx) · [报告与代码对应表](homework/报告与代码对应表.md)。整理后的运行代码、共享 SDK 和实验材料集中在 `homework/`，原实验版本与历史资料保留在仓库其他目录中。
+
+## 一、四个技术模块
+
+| 模块 | 说明与运行步骤 | 主要入口 |
 |---|---|---|
-| 查看机械臂模型、调整虚拟关节和观察 TF | [ROS 工作空间](homework/src/robot_modeling/arm2026_ws/README.md) | Ubuntu20.04 / ROS1 Noetic，支持图形显示 |
-| 将四个堆叠方块归位，或将四个方块堆成四层 | [week3.ipynb](homework/src/arm_motion_control/week3/week3.ipynb)、[Week4_堆叠.ipynb](homework/src/arm_motion_control/week4/Week4_堆叠.ipynb) | Jetson 上的 Jupyter，需要实体机械臂 |
-| 识别四色物块，或从固定 P4 上料区自动分拣 | [week5.ipynb](homework/src/vision_sorting/week5/5.目标识别/week5.ipynb)、[week6.ipynb](homework/src/vision_sorting/week6/week6.ipynb) | Jetson 上的 Jupyter；识别需相机，分拣还需实体机械臂 |
-| 用手势控制开爪、闭爪、Home 和停止 | [app_usb.py](homework/src/gesture_control/week7/gesture_usb/app_usb.py)、[receiver_usb.py](homework/src/gesture_control/week7/gesture_usb/receiver_usb.py) | Windows 识别端 + Jetson 接收端 |
-| 调用关节、夹爪和末端位姿接口，或查看实际配置 | [共享实体 SDK](homework/sdk/arm5dof_python_uservo/) | Jetson；主程序已配置共享 SDK 路径 |
+| 1 | [机器人建模与实验平台搭建](homework/src/robot_modeling/README.md) | [arm2026_ws](homework/src/robot_modeling/arm2026_ws/README.md)：catkin 工作空间、Xacro 模型及 RViz 启动配置 |
+| 2 | [机械臂运动控制](homework/src/arm_motion_control/README.md) | [week3.ipynb](homework/src/arm_motion_control/week3/week3.ipynb)、[Week4_堆叠.ipynb](homework/src/arm_motion_control/week4/Week4_堆叠.ipynb) |
+| 3 | [视觉目标识别与自动分拣](homework/src/vision_sorting/README.md) | [week5.ipynb](homework/src/vision_sorting/week5/5.目标识别/week5.ipynb)、[week6.ipynb](homework/src/vision_sorting/week6/week6.ipynb) |
+| 4 | [手势识别与交互控制](homework/src/gesture_control/README.md) | [app_usb.py](homework/src/gesture_control/week7/gesture_usb/app_usb.py)、[receiver_usb.py](homework/src/gesture_control/week7/gesture_usb/receiver_usb.py) |
 
-下面每组命令均从 **`homework/` 根目录**开始。在本 README 所在目录打开终端后，先执行 `cd homework`。Notebook 在 Jupyter 中按代码单元运行；`.py` 文件按给出的命令从终端启动。
+- **建模：**用 URDF/Xacro 描述连杆、关节和夹爪，关节 GUI 发布 `/joint_states`，`robot_state_publisher` 更新 TF，RViz 显示模型。当前 Z1 风格教学模型包含11个 Link、10个 Joint，其中7个转动、3个固定。
+- **运动：**用示教抓取点、接近点、抬升点和放置点组织四方块归位与四层堆叠。位置使用 mm，参数表中的角度在调用 SDK 前转换为 rad，堆叠入口先进行关键姿态 IK 检查。
+- **视觉：**采用 BGR→HSV、双区间红色分割、形态学处理与轮廓筛选识别四色物块；连续5帧确认唯一同色目标后，从固定 P4 上料区抓取并投放到对应桶位。像素中心用于标注和记录。
+- **手势：**结合 MediaPipe 与关键点几何规则识别 One、Two、Three、OK、Five，通过候选选择、确认、一次性准备互锁和网络心跳，实现开爪、闭爪、Home 与软件停止。
 
-## 1. ROS 模型：编译后打开 RViz
+## 二、目录结构
 
-**用途：**查看 Z1 风格教学模型、拖动关节滑条、观察坐标系与 TF。这条链路不连接实体机械臂。
+```text
+ros_work/
+├── README.md                              仓库首页
+├── homework/                              整理后的运行与交付目录
+│   ├── README.md                          详细使用说明
+│   ├── 报告与代码对应表.md
+│   ├── src/
+│   │   ├── robot_modeling/arm2026_ws/      ROS 建模工作空间
+│   │   ├── arm_motion_control/            基础控制、week3 归位、week4 堆叠
+│   │   ├── vision_sorting/                week5 识别、week6 分拣
+│   │   └── gesture_control/week7/         gesture_usb、models
+│   ├── sdk/arm5dof_python_uservo/          共享实体 SDK 与标定配置
+│   ├── reports/                           最终报告与原实验周报告
+│   ├── results/                           原始数据、图片、视频及运行输出
+│   ├── docs/                              验证、来源、文件清单与参考资料
+│   ├── tools/check_project.py             静态检查入口
+│   ├── project_paths.py                   共享 SDK 定位
+│   ├── requirements-jetson.txt
+│   └── requirements-gesture.txt
+├── arm2026_ws/                            原建模工作空间
+├── robot_ws/                              按四个技术模块保存的归档
+├── arm5dof_python_uservo/                  原平台 SDK 与配置
+├── arm5dof_visual_grasping/                相机标定与坐标映射参考
+├── arm5dof_python_pybullet/                PyBullet 仿真参考
+├── week1/、week3/…week7/                   原实验代码及记录
+├── 第11组_课程项目提交包/                  历史提交快照
+├── docs/                                  原报告、整理与维护记录
+├── .gitattributes                         Git LFS 与文件字节规则
+└── .gitignore                             本地缓存和环境排除规则
+```
 
-在 Ubuntu / WSLg 终端执行：
+日常运行使用 `homework/` 下的入口。运动、分拣和手势接收端共用 [实体 SDK](homework/sdk/arm5dof_python_uservo/)，程序通过 `project_paths.py` 定位 SDK 及其配置。新运行产生的数据写入对应的 `results/**/runtime/`，原始实验数据单独保留。
+
+完整交付目录见 [最终目录树](homework/docs/最终目录树.txt)，文件来源、整理过程和哈希见 [文件整理记录](homework/docs/文件整理记录.md) 与 [文件清单](homework/docs/文件清单.csv)。
+
+## 三、开发环境
+
+| 运行链路 | 环境与依赖 | 配置依据 |
+|---|---|---|
+| ROS 模型显示 | Ubuntu 20.04 / WSL2、ROS1 Noetic、catkin、Xacro、RViz、joint_state_publisher_gui、robot_state_publisher | 建模工作空间的 Package、Launch 与 RViz 配置 |
+| Jetson 运动与视觉 | Linux、Python3（Notebook 元数据多为3.8.10）、NumPy、pyserial、OpenCV、ipywidgets、JupyterLab | 共享 SDK、Notebook 及 [Jetson 依赖清单](homework/requirements-jetson.txt) |
+| Windows 手势识别 | Windows 11、记录为 Python 3.11.9；MediaPipe Tasks、OpenCV、NumPy、Pillow、Tkinter | 识别界面、识别程序及 [Windows 依赖清单](homework/requirements-gesture.txt) |
+| Jetson 手势接收 | Python3 与 HTTP 标准库；实体模式另需 NumPy、pyserial 和共享 SDK | receiver_usb.py、arm_interrupt.py 与 SDK 配置 |
+
+ROS 图形界面需要 Linux 桌面或 WSLg。JetPack、Jetson 系统镜像及现场依赖的完整版本仍需核实；依赖清单提供安装入口，实机版本对应情况见 [待核实事项](homework/docs/待核实事项.md)。
+
+## 四、下载与安装
+
+先安装 Git 和 Git LFS，再克隆仓库并拉取大文件。视频、模型和部分归档资源由 Git LFS 管理。
 
 ```bash
+git lfs install
+git clone https://github.com/Frankie417/ros_work.git
+cd ros_work
+git lfs pull
+```
+
+**以下各小节均从仓库根目录 `ros_work/` 的新终端开始。** Jetson 和 Windows 分别准备仓库；进入 `homework/` 后执行对应程序。保留现有 SDK 配置，并在运行前核对实际设备、串口、关节零位与示教点。
+
+### 4.1 ROS 编译与 RViz
+
+在已安装 ROS1 Noetic 的 Ubuntu 20.04 / WSLg 环境执行：
+
+```bash
+sudo apt update
+sudo apt install ros-noetic-xacro ros-noetic-joint-state-publisher-gui \
+  ros-noetic-robot-state-publisher ros-noetic-rviz
 source /opt/ros/noetic/setup.bash
-sudo apt install ros-noetic-xacro ros-noetic-joint-state-publisher-gui ros-noetic-robot-state-publisher ros-noetic-rviz
-cd src/robot_modeling/arm2026_ws
+cd homework/src/robot_modeling/arm2026_ws
 catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
 source devel/setup.bash
 roslaunch marm_description view_marm_z1_style.launch
 ```
 
-启动后，在关节 GUI 中调整 `marm_z1_joint1`～`marm_z1_joint6`，用 `marm_z1_gripper_joint` 调整夹爪。RViz 的 Fixed Frame 设为 `marm_z1_base_link`，工具坐标系为 `marm_z1_grasping_frame`。
+启动后，用关节 GUI 调整 `marm_z1_joint1`～`marm_z1_joint6`，用 `marm_z1_gripper_joint` 调整夹爪。RViz 的 Fixed Frame 设置为 `marm_z1_base_link`，工具坐标系为 `marm_z1_grasping_frame`。
 
-需要比较第四关节转动方向时，先按 `Ctrl+C` 停止主版，再在已加载环境的终端运行：
+比较第四关节方向时，先停止主版，再在已加载工作空间环境的终端执行：
 
 ```bash
 roslaunch marm_description view_marm_z1_style_course_variant.launch
 ```
 
-主版 joint4 轴为 `(0,1,0)`，课程变体为 `(0,-1,0)`。详细说明见[建模模块 README](homework/src/robot_modeling/README.md)。
+主版 joint4 轴为 `(0,1,0)`，课程变体为 `(0,-1,0)`。该启动链路用于教学模型显示与 TF 观察，实体控制入口见下节。
 
-## 2. 归位与堆叠：在 Jetson 的 Jupyter 中运行
+### 4.2 Jetson 运动、识别与分拣
 
-**准备：**连接机械臂电源及串口，核对实际关节零位、工作区域和示教点。实体 SDK 默认串口为 `/dev/ttyTHS1`，通信设置为 115200、8N1。
-
-先安装依赖并启动 Jupyter：
+在 Jetson 仓库根目录安装依赖并启动 JupyterLab：
 
 ```bash
+cd homework
 python3 -m pip install -r requirements-jetson.txt
 python3 -m jupyterlab
 ```
 
-在 Jupyter 文件浏览器中打开对应 Notebook。后面的视觉实验也可使用这个 Jupyter 会话。
+在 Jupyter 文件浏览器中打开对应 Notebook，按代码单元顺序加载参数与函数，再运行实验入口。
 
-### 四方块归位：week3.ipynb
+| 实验 | Notebook | 运行要点 |
+|---|---|---|
+| 四方块归位 | [week3.ipynb](homework/src/arm_motion_control/week3/week3.ipynb) | 默认 `DRY_RUN=True`，先执行 `run_unstack_sort()` 检查位姿与顺序；核对后切换实机模式，并重新运行参数、函数和入口单元 |
+| 四层堆叠 | [Week4_堆叠.ipynb](homework/src/arm_motion_control/week4/Week4_堆叠.ipynb) | `run_single_block(0)`～`run_single_block(3)` 按层执行；各入口先做20项 IK 预检，动作单元会直接控制真机 |
+| 独立颜色识别 | [week5.ipynb](homework/src/vision_sorting/week5/5.目标识别/week5.ipynb) | 启动相机、选择真实颜色、记录测试与保存截图；只进行识别和记录 |
+| 固定 P4 分拣 | [week6.ipynb](homework/src/vision_sorting/week6/week6.ipynb) | 启动预览会连接机械臂并移动到拍摄位姿；连续5帧确认唯一同色目标后抓放，待 P4 清空后接收下一块 |
 
-打开 [src/arm_motion_control/week3/week3.ipynb](homework/src/arm_motion_control/week3/week3.ipynb)。
+实体 SDK 默认串口为 `/dev/ttyTHS1`，通信设置为 115200、8N1；视觉 Notebook 默认相机编号为 `0`。分拣桶位来自 Notebook 内的 `bin_map`，按现场位置核对。堆叠按层运行；分拣的“停止预览”只结束预览流程，机械动作的完成情况需单独确认。
 
-1. 从上往下运行 SDK 导入、位姿参数、参数检查和动作函数单元。
-2. 保持参数区的 `DRY_RUN=True`，运行包含 `run_unstack_sort()` 的单元。程序打印位姿表并完成预览，不连接串口。
-3. 核对打印的抓取点、上方点和目标区。当前源码顺序是 `P0 → P2 → P6 → P8`。
-4. 准备真机执行时，将参数区的 `DRY_RUN` 设为 `False`，重新运行参数、相关函数及入口单元，使函数默认参数同步更新，再执行归位。
+基础关节标定、关节弧度、夹爪和末端位姿示例位于 [basic_control](homework/src/arm_motion_control/basic_control/)。报告与 SDK 的 K/B、高度补偿及归位顺序存在版本差异，具体参数和实验步骤见 [运动模块说明](homework/src/arm_motion_control/README.md) 与 [视觉模块说明](homework/src/vision_sorting/README.md)。
 
-程序通过共享 SDK 完成开爪、抓取、抬升、Home 转运、放置和退出。预览开关只适用于这本归位 Notebook。
+### 4.3 Windows 手势识别与 Jetson 通信
 
-### 四层堆叠：Week4_堆叠.ipynb
+通过 Micro-USB 建立 Windows 与 Jetson 的网络连接。手势服务默认地址为 `http://192.168.55.1:8765`，Jupyter 使用独立的 `8888` 端口。
 
-打开 [src/arm_motion_control/week4/Week4_堆叠.ipynb](homework/src/arm_motion_control/week4/Week4_堆叠.ipynb)。
-
-1. 运行参数与运动学单元，再运行定义动作函数的单元。
-2. 根据实际摆放，依次运行下面四个已有动作单元，每次等待上一层完成并检查结果：
-
-| 动作入口 | 任务 |
-|---|---|
-| `run_single_block(0)` | P0 方块 → P4 底层 |
-| `run_single_block(1)` | P2 方块 → P4 第2层 |
-| `run_single_block(2)` | P8 方块 → P4 第3层 |
-| `run_single_block(3)` | P6 方块 → P4 第4层 |
-
-每次入口先做20项关键姿态 IK 预检，再创建机械臂对象。堆叠没有全局 `DRY_RUN` 开关，动作单元会直接驱动真机，按层运行，不使用“运行全部”。
-
-两本 Notebook 均通过 `project_paths.py` 定位 `sdk/arm5dof_python_uservo/`，并显式使用该 SDK 的 `config/`。详细参数和原结果见[运动控制模块 README](homework/src/arm_motion_control/README.md)。
-
-## 3. HSV 识别与 P4 分拣：先识别，再运行抓放
-
-使用上节的 Jetson 依赖和 Jupyter 会话，连接 USB 相机。两本 Notebook 的相机默认编号均为 `0`；设备编号变化时在各自参数区核对。
-
-### 只做颜色识别：week5.ipynb
-
-打开 [src/vision_sorting/week5/5.目标识别/week5.ipynb](homework/src/vision_sorting/week5/5.目标识别/week5.ipynb)。这本程序只读取相机和记录识别结果，不控制机械臂。
-
-1. 运行相机、HSV 阈值和路径参数单元，再运行检测与记录函数单元。
-2. 可先运行包含 `test_image` 的离线自检单元，检查四个合成色块是否全部检出。
-3. 运行相机探测单元检查取帧，再运行界面单元。
-4. 点击“启动实时画面”，观察目标颜色、边框和四色掩膜。
-5. 放入已知颜色的物块，点击相应真实颜色按钮，再点击“记录一次测试”；需要取证时点击“保存截图”。结束时点击“停止”。
-
-新输出保存在 `results/vision_sorting/runtime/week5/`，原28次识别数据保留在 `results/vision_sorting/data/week5_test_records.csv`。
-
-### 固定 P4 自动分拣：week6.ipynb
-
-打开 [src/vision_sorting/week6/week6.ipynb](homework/src/vision_sorting/week6/week6.ipynb)。这本程序会调用实体机械臂。
-
-1. 核对相机、P4 上料区、桶位、机械臂串口和共享 SDK 配置。
-2. 顺序运行参数、Roll 归一化、颜色检测、动作函数和界面单元。
-3. 点击“启动预览”。**该操作会连接机械臂并移动到拍摄位姿。**
-4. 将单个物块放在 P4。程序在连续5帧检测到唯一同色目标后进入 `BUSY`，完成抓取、投桶和复位。
-5. 动作结束后，程序检查 P4 清空，再回到可接收下一块的状态。实际是否入桶仍需观察记录。
-
-分拣使用 Notebook 内的 `bin_map`，不会读取 CSV 自动覆盖桶位。新输出位于 `results/vision_sorting/runtime/week6/`。“停止预览”结束相机预览，正在执行的机械动作仍需等待完成或使用设备急停。
-
-算法、阈值和结果说明见[视觉模块 README](homework/src/vision_sorting/README.md)。
-
-## 4. 手势控制：先启动 Jetson 接收端，再连接 Windows 界面
-
-**准备：**通过 Micro-USB 建立 Windows 与 Jetson 网络连接，确保能访问 Jetson 的 `192.168.55.1`。手势服务默认端口为 `8765`，与 Jupyter 的 `8888` 端口不同。
-
-### 第一步：Jetson 启动接收端
-
-先安装上节的 Jetson 依赖。做软件演练时执行：
+先在 Jetson 仓库根目录启动接收端，默认运行模拟模式：
 
 ```bash
+cd homework
+python3 -m pip install -r requirements-jetson.txt
 python3 src/gesture_control/week7/gesture_usb/receiver_usb.py
 ```
 
-终端会打印本次服务的 URL、`TOKEN` 和 `MODE`。默认是模拟模式，不连接机械臂。
-
-准备使用实体机械臂时，停止模拟服务，改用下面的命令：
+终端会打印本次服务的 URL、`TOKEN` 与 `MODE`。需要实体控制时，停止模拟服务，在同一 `homework/` 目录改用：
 
 ```bash
-python3 src/gesture_control/week7/gesture_usb/receiver_usb.py --hardware --sdk-dir "$PWD/sdk/arm5dof_python_uservo" --arm-port /dev/ttyTHS1
+python3 src/gesture_control/week7/gesture_usb/receiver_usb.py \
+  --hardware --sdk-dir "$PWD/sdk/arm5dof_python_uservo" \
+  --arm-port /dev/ttyTHS1
 ```
 
-两种接收模式择一启动。保留终端，供 Windows 端填写本次 `TOKEN`。
-
-### 第二步：Windows 启动识别界面
-
-在 Windows 的 `homework/` 根目录执行：
+两种接收模式择一启动。随后在 Windows 仓库根目录打开 PowerShell，安装依赖并启动识别界面：
 
 ```powershell
+cd homework
 py -3.11 -m venv .venv-gesture
-.venv-gesture\Scripts\python.exe -m pip install -r requirements-gesture.txt
-.venv-gesture\Scripts\python.exe src/gesture_control/week7/gesture_usb/app_usb.py
+.\.venv-gesture\Scripts\python.exe -m pip install -r requirements-gesture.txt
+.\.venv-gesture\Scripts\python.exe src/gesture_control/week7/gesture_usb/app_usb.py
 ```
 
-创建虚拟环境、安装依赖只需在首次使用时执行；之后直接用该环境的 Python 启动 `app_usb.py`。
+虚拟环境和依赖首次配置后可复用，之后直接运行最后一条启动命令。
 
-### 第三步：连接并操作
+1. 在界面填写接收端 URL 和本次 `TOKEN`，点击“连接并查询”，确认接收模式。
+2. 选择相机并启动摄像头，解除停止，再点击“准备下一条”。
+3. 用 One 选择开爪、Two 选择闭爪、Three 选择 Home，用 OK 确认执行；Five 请求软件停止。
+4. 动作结束后重新准备下一条。服务重启后重新填写 `TOKEN` 并连接。
 
-1. 界面填写 `http://192.168.55.1:8765` 和接收器本次打印的 `TOKEN`，点击“连接并查询”，确认接收模式。
-2. 选择正确相机编号并启动摄像头。
-3. 解除停止，点击“准备下一条”。
-4. 用 One 选择张爪、Two 选择闭爪、Three 选择 Home，再用 OK 确认执行；Five 请求软件停止。
-5. 动作完成后，重新准备下一条。接收器重启后需填写新 `TOKEN` 并重新连接。
+保留 `gesture_usb/` 与同级 `models/gesture_recognizer.task` 的相对结构。截图、CSV 和事件输出写入 `homework/results/gesture_control/runtime/`；识别门限、心跳和停止互锁见 [手势模块说明](homework/src/gesture_control/README.md)。
 
-`gesture_usb/` 与同级 `models/gesture_recognizer.task` 必须一起保留。新截图、CSV 和事件输出位于 `results/gesture_control/runtime/`。
+## 五、实验结果
 
-两端协议、识别门限和互锁说明见[手势模块 README](homework/src/gesture_control/README.md)。
-
-## 5. 共享 SDK：主程序自动加载，基础实验使用课程示例
-
-[sdk/arm5dof_python_uservo/](homework/sdk/arm5dof_python_uservo/) 保存一套实体机械臂 SDK，包含运动学、舵机接口、软运动轨迹和完整配置。
-
-- 运行前面的归位、堆叠、分拣和手势程序时，按各自入口启动，程序会使用这套 SDK；不需要把 SDK 再复制进各个 week 目录。
-- 要学习单项接口，在 Jetson 的 `homework/` 根目录启动 Jupyter，然后打开下面的课程示例。
-
-| 课程示例 | 使用方法 |
-|---|---|
-| [01.机械臂关节标定.ipynb](homework/src/arm_motion_control/basic_control/01.机械臂关节标定.ipynb) | 连接机械臂，按标准姿态采集反馈，运行 `calc_kb` 计算 K/B；该程序不自动覆盖配置 |
-| [02.机械臂关节弧度控制.ipynb](homework/src/arm_motion_control/basic_control/02.机械臂关节弧度控制.ipynb) | 按单元测试关节角和多关节软运动 |
-| [03.机械爪测试.ipynb](homework/src/arm_motion_control/basic_control/03.机械爪测试.ipynb) | 按单元测试夹爪角度、张开和闭合 |
-| [04.末端位姿控制.ipynb](homework/src/arm_motion_control/basic_control/04.末端位姿控制.ipynb) | 调用 `set_tool_pose`，并读取末端位姿反馈 |
-
-课程示例已配置共享 SDK 路径。SDK 目录内另保留同名原始示例；如果直接运行这些原始示例，应在 SDK 目录启动 Jupyter：
-
-```bash
-cd sdk/arm5dof_python_uservo
-python3 -m jupyterlab
-```
-
-| 配置文件 | 用途 |
-|---|---|
-| `sdk/arm5dof_python_uservo/config.py` | 默认串口、关节ID、K/B、Home和拍摄位姿、轨迹步长 |
-| `sdk/arm5dof_python_uservo/config/z_error_polyfit.txt` | 实体机械臂高度补偿 |
-| `sdk/arm5dof_python_uservo/config/` 内其他文件 | 工作台标定、坐标变换及物体配置 |
-
-保留当前 SDK 的实际配置。报告中的 K/B 和高度补偿与这套配置有版本差异，先核实现场版本，再决定实验调整，详见[待核实事项](homework/docs/待核实事项.md)。
-
-## 项目结构与开发环境
-
-```text
-homework/
-├── README.md
-├── 报告与代码对应表.md
-├── reports/                         最终报告和原实验报告
-├── src/
-│   ├── robot_modeling/arm2026_ws/    ROS工作空间
-│   ├── arm_motion_control/          basic_control、week3、week4
-│   ├── vision_sorting/              week5/5.目标识别、week6
-│   └── gesture_control/week7/       gesture_usb、models
-├── sdk/arm5dof_python_uservo/        共享实体SDK
-├── results/                         原数据、截图、视频及新运行输出
-├── docs/                            整理、验证和来源记录
-├── tools/check_project.py           静态检查工具
-└── project_paths.py                 共享SDK定位
-```
-
-完整目录见[最终目录树](homework/docs/最终目录树.txt)。
-
-| 运行链路 | 环境与依赖 |
-|---|---|
-| ROS模型 | Ubuntu20.04 / WSL2、ROS1 Noetic、catkin、Xacro、RViz及关节状态发布组件 |
-| Jetson运动和视觉 | Linux、Python3（Notebook元数据多为3.8.10）、NumPy、pyserial、OpenCV、Jupyter/ipywidgets |
-| Windows手势 | Windows11、记录为Python3.11.9、MediaPipe Tasks、OpenCV、NumPy、Pillow、Tkinter |
-| Jetson手势接收 | Python3标准库；实体模式另需NumPy、pyserial及本项目SDK |
-
-依赖入口为 [requirements-jetson.txt](homework/requirements-jetson.txt) 和 [requirements-gesture.txt](homework/requirements-gesture.txt)。JetPack及现场完整库版本仍待核实。ROS模型、Jetson分拣、Windows手势各自运行，尚未统一为一个ROS控制系统。
-
-## 实验结果和视频
-
-| 实验 | 原记录结果 | 判定口径 |
+| 实验 | 原记录结果 | 统计口径 |
 |---|---|---|
-| 四方块归位 | 11/12，约91.7%；完整成功2/3轮 | 三轮，每轮4块，按实际放置结果 |
-| 四层堆叠 | 10/12，约83.3%；完整成功2/3轮 | 按块次，首轮高层失败计入 |
-| 独立颜色识别 | 主目标28/28；严格判据22/28，约78.6% | 严格判据要求颜色正确且唯一有效目标 |
-| 固定P4分拣 | 两轮8/8人工观察入桶 | 固定红黄绿蓝顺序；与44条调试日志未逐条绑定 |
-| 手势交互 | 9轮触发、1轮低分正确拦截、0误触发 | 基础动作，不是完整手势搬运验收 |
+| 四方块归位 | 11/12，约91.7%；完整成功2/3轮 | 三轮，每轮4块，按实际放置结果统计 |
+| 四层堆叠 | 10/12，约83.3%；完整成功2/3轮 | 按块次统计，首轮高层失败计入 |
+| 独立颜色识别 | 主目标颜色28/28正确；严格判据22/28，约78.6% | 严格判据要求颜色正确且只有一个有效目标 |
+| 固定 P4 分拣 | 两轮8/8人工观察正确入桶 | 固定红、黄、绿、蓝投放顺序，小样本现场记录 |
+| 手势交互 | 10轮：9轮正确触发、1轮低分正确拦截、0误触发 | 覆盖基础动作选择、确认与停止 |
 
-![原相机颜色识别结果](homework/results/vision_sorting/images/week5_evidence/20261019_144315_891538_result.png)
+结果来自原报告、原始 CSV 和报告转录表，来源及对应章节见 [实验结果索引](homework/results/README.md)。P4 分拣的人工入桶记录与44条调试日志尚未逐条绑定；手势原回执及视频与测试轮次的同步关系仍待补齐。
 
-- [机械臂反应视频](homework/results/gesture_control/videos/手势识别控制机械臂视频%28机械臂反应%29.mp4)：960×544，约57.968秒。
-- [Windows手势识别录屏](homework/results/gesture_control/videos/手势识别控制机械臂视频%28Windows桌面录屏%29.mp4)：2558×1528，约59.233秒。
-- [归位视频](homework/results/motion_control/videos/11组_第三章_实验视频.mp4)、[堆叠视频](homework/results/motion_control/videos/11组_第四章_实验视频_week4.mp4)。
+下图为原相机实验保存的四色识别结果，同帧 raw、result 与 masks 文件一并保留：
 
-原始数据、图片、录像和报告章节的联系见[实验结果索引](homework/results/README.md)。手势视频与原测试轮次、回执的同步关系仍待核实。
+![原相机四色识别结果](homework/results/vision_sorting/images/week5_evidence/20261019_144315_891538_result.png)
 
-## 检查与已知问题
+实验视频：[四方块归位](homework/results/motion_control/videos/11组_第三章_实验视频.mp4) · [四层堆叠](homework/results/motion_control/videos/11组_第四章_实验视频_week4.mp4) · [机械臂手势响应](homework/results/gesture_control/videos/手势识别控制机械臂视频%28机械臂反应%29.mp4) · [Windows 手势识别录屏](homework/results/gesture_control/videos/手势识别控制机械臂视频%28Windows桌面录屏%29.mp4)。
 
-从 `homework/` 根目录执行以下不连接实体设备的检查：
+## 六、完成情况与后续工作
+
+已完成教学模型显示与关节方向验证、共享 SDK 路径整理、示教点归位与堆叠、HSV 颜色识别、固定 P4 自动分拣，以及手势驱动开爪、闭爪、Home 和软件停止。代码、报告、数据与视频已按模块建立对应索引。
+
+当前三条运行链路分别启动，教学模型与实体关节的逐轴映射、统一 ROS 图像与控制启动链路，以及手势选择物块和目标区域后的完整搬运仍待完成。后续工作包括：
+
+1. 复核实机 SDK、K/B、示教点与高度补偿版本，记录 Jetson 系统和依赖版本。
+2. 补充乱序投放、不同光照与重复实验，记录独立颜色识别和完整搬运的结果。
+3. 测量实体停止时延，补齐原始回执、事件日志与视频时间对应关系。
+4. 完成模型与实体轴映射，扩展相机定位抓取、手势任务选择与 ROS 集成。
+
+SDK 九点标定原示例缺少7张参考图片，部分辅助分支仍有已记录的问题；详细差异与待补材料见 [待核实事项](homework/docs/待核实事项.md)。
+
+## 七、检查与参考资料
+
+在已安装相应 Python 依赖的环境中，从仓库根目录执行：
 
 ```bash
+cd homework
 python -B tools/check_project.py
 python -B src/gesture_control/week7/gesture_usb/test_usb.py
 python -B 'src/vision_sorting/week5/5.目标识别/self_test_week5.py'
 ```
 
-上述检查分别验证静态文件与链接、模拟器和回环HTTP、CLI参考类的合成图识别。实际执行结果见[项目验证报告](homework/docs/项目验证报告.md)。Linux实际构建、RViz窗口、相机和实体机械臂仍需在对应环境验证。
+三项检查分别覆盖源码、Notebook、XML、Markdown 链接与文件哈希，手势模拟器与回环 HTTP，以及 CLI 识别类的合成图测试。检查结果及环境限制见 [项目验证报告](homework/docs/项目验证报告.md)；ROS 实际构建、RViz 窗口、相机与实体机械臂需在对应平台验证。
 
-当前需保留的差异包括报告与SDK的K/B、归位顺序和高度补偿；SDK九点标定原缺7张参考图片，部分辅助分支仍有已记录的问题。完整手势搬运、任意位置抓取、教学模型与实体轴映射和统一ROS集成属于后续工作，详见[待核实事项](homework/docs/待核实事项.md)。
-
-## 报告与参考资料
-
-- [最终课程报告 DOCX](homework/reports/课程项目报告.docx)、[原实验周报告](homework/reports/original_experiments/)。
-- [报告与代码对应表](homework/报告与代码对应表.md)、[文件整理记录](homework/docs/文件整理记录.md)、[项目验证报告](homework/docs/项目验证报告.md)、[文件来源与哈希](homework/docs/文件清单.csv)。
-- [DICE平台手册](homework/docs/references/DICE_白熊人工智能实训平台用户手册.pdf)。
+- [最终课程项目报告](homework/reports/课程项目报告.docx)、[原实验周报告](homework/reports/original_experiments/)、[报告与代码对应表](homework/报告与代码对应表.md)。
+- [文件整理记录](homework/docs/文件整理记录.md)、[文件来源与哈希](homework/docs/文件清单.csv)、[实验结果索引](homework/results/README.md)。
+- [DICE 白熊人工智能实训平台用户手册](homework/docs/references/DICE_白熊人工智能实训平台用户手册.pdf)。
 - [ROS Noetic](https://wiki.ros.org/noetic)、[URDF](https://wiki.ros.org/urdf)、[Xacro](https://wiki.ros.org/xacro)。
-- [OpenCV颜色空间](https://docs.opencv.org/4.x/df/d9d/tutorial_py_colorspaces.html)、[MediaPipe Gesture Recognizer](https://ai.google.dev/edge/mediapipe/solutions/vision/gesture_recognizer)。
+- [OpenCV 颜色空间](https://docs.opencv.org/4.x/df/d9d/tutorial_py_colorspaces.html)、[形态学处理](https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html)。
+- [MediaPipe Gesture Recognizer](https://ai.google.dev/edge/mediapipe/solutions/vision/gesture_recognizer)。
 
-平台 SDK 保留自身 LICENSE 与来源文件；报告和实验数据保留原始记录。
+第三方 SDK 与模型参考保留各自 LICENSE 和来源文件；课程程序、原始实验数据与报告保留版本和来源记录。
