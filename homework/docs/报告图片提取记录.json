@@ -1,0 +1,20 @@
+[
+  {
+    "container": "reports/课程项目报告.docx",
+    "member": "word/media/image3.png",
+    "sha256": "5e7b9c79166d7d4677ef5513afcc15fffd33b82a8fe67742b750d90ad9ad4660",
+    "target": "results/robot_modeling/images/final_report/image3.png"
+  },
+  {
+    "container": "reports/课程项目报告.docx",
+    "member": "word/media/image4.png",
+    "sha256": "24b531c02a37b9e19d1963da29975f9041d42fe0ac2b970b9200f332f2b33bce",
+    "target": "results/robot_modeling/images/final_report/image4.png"
+  },
+  {
+    "container": "reports/课程项目报告.docx",
+    "member": "word/media/image5.png",
+    "sha256": "16b9031c3d93e65e4be15279ac70537f24652553ef94ffa9f7700a0c539670b7",
+    "target": "results/robot_modeling/images/final_report/image5.png"
+  }
+]

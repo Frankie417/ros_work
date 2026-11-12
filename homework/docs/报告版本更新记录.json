@@ -1,0 +1,11 @@
+{
+  "original_path": "docs/reports/课程项目报告_最终修订版_格式规范化.docx",
+  "initial_sha256": "abbefd1914e4e531d9b801e19b3de50f9e0a248a5d8ec89aa0b5cca73a91a3bb",
+  "latest_sha256": "6043c8b0ff5b8483fa1c70c1296d8a3ad14ca7095ff98ce06882641e34401c4d",
+  "latest_bytes": 4387557,
+  "latest_modified_ns": 1794414575295058600,
+  "previous_copy": "reports/history/before_latest_source_update/课程项目报告.docx",
+  "current_copy": "reports/课程项目报告.docx",
+  "text_changes": "最新原件删除了报告3.2中旧joint4安装位置/轴向/限位参数段及一段图引导文字，实验结果表未变化",
+  "operation": "只读比较原件；归档旧homework副本并复制最新原件；未写入原件"
+}

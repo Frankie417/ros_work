@@ -1,0 +1,11 @@
+# Python 3 on Jetson; versions must be checked on the physical platform.
+numpy
+pyserial
+opencv-python
+ipywidgets
+jupyterlab
+PyYAML
+pandas
+scipy
+absl-py
+matplotlib

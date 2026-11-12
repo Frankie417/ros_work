@@ -26,7 +26,7 @@ CLI绿色V下限及记录判据与主Notebook不同，不能用其统计替换28
 
 主目标颜色28/28正确；按“唯一有效目标且颜色正确”通过22/28≈78.6%。最终固定顺序两轮分拣8/8实际入桶，无重复抓取。调试CSV中的P4清空不能单独当作入桶成功。
 
-![同帧识别实拍](1.3_experiment_results/figures/week5_evidence/20261019_144315_891538_result.png)
+![同帧识别实拍](../../homework/results/vision_sorting/images/week5_evidence/20261019_144315_891538_result.png)
 
 ## 已知问题
 

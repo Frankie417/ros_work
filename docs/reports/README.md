@@ -3,6 +3,6 @@
 当前提交采用“最终修订版_格式规范化.docx”；history下的预览是旧版本留档。各周原始报告及历史提交包保留在原实验目录，用于对应当时数据。
 
 - [课程项目报告_修改完善版_预览.pdf](history/%E8%AF%BE%E7%A8%8B%E9%A1%B9%E7%9B%AE%E6%8A%A5%E5%91%8A_%E4%BF%AE%E6%94%B9%E5%AE%8C%E5%96%84%E7%89%88_%E9%A2%84%E8%A7%88.pdf)
-- [任务书2：机器人感知与控制综合实践 (1).docx](%E4%BB%BB%E5%8A%A1%E4%B9%A62%EF%BC%9A%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%84%9F%E7%9F%A5%E4%B8%8E%E6%8E%A7%E5%88%B6%E7%BB%BC%E5%90%88%E5%AE%9E%E8%B7%B5%20%281%29.docx)
+- [任务书2：机器人感知与控制综合实践 (1).docx](../../homework/docs/references/%E4%BB%BB%E5%8A%A1%E4%B9%A62%EF%BC%9A%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%84%9F%E7%9F%A5%E4%B8%8E%E6%8E%A7%E5%88%B6%E7%BB%BC%E5%90%88%E5%AE%9E%E8%B7%B5%20%281%29.docx)
 - [课程项目报告_最终修订版_格式规范化.docx](%E8%AF%BE%E7%A8%8B%E9%A1%B9%E7%9B%AE%E6%8A%A5%E5%91%8A_%E6%9C%80%E7%BB%88%E4%BF%AE%E8%AE%A2%E7%89%88_%E6%A0%BC%E5%BC%8F%E8%A7%84%E8%8C%83%E5%8C%96.docx)
 - [课程项目报告_最终修订版_检查报告.md](%E8%AF%BE%E7%A8%8B%E9%A1%B9%E7%9B%AE%E6%8A%A5%E5%91%8A_%E6%9C%80%E7%BB%88%E4%BF%AE%E8%AE%A2%E7%89%88_%E6%A3%80%E6%9F%A5%E6%8A%A5%E5%91%8A.md)

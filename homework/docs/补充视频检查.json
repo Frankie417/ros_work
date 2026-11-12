@@ -1,0 +1,28 @@
+[
+  {
+    "file": "results/gesture_control/videos/手势识别控制机械臂视频(Windows桌面录屏).mp4",
+    "opens": true,
+    "first_frame_decoded": true,
+    "fps": 30.0,
+    "frame_count": 1777.0,
+    "duration_seconds": 59.233333333333334,
+    "width": 2558,
+    "height": 1528,
+    "bytes": 120931940,
+    "sha256": "86d0034c6decfdc84c0b7dfe8e13803a804ea3a0e5766c1a634c7b18c39ea31d",
+    "copy_identical": true
+  },
+  {
+    "file": "results/gesture_control/videos/手势识别控制机械臂视频(机械臂反应).mp4",
+    "opens": true,
+    "first_frame_decoded": true,
+    "fps": 60.05056840942295,
+    "frame_count": 3481.0,
+    "duration_seconds": 57.967811,
+    "width": 960,
+    "height": 544,
+    "bytes": 23531367,
+    "sha256": "b9ce002bbf92e53944f40f1e8cd84cdb2d147e1b027dda31c3d63c8d15dea8b5",
+    "copy_identical": true
+  }
+]

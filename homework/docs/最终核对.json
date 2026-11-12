@@ -1,0 +1,50 @@
+{
+  "markdown_local_links": 371,
+  "markdown_errors": [],
+  "copy_mapping_records": 197,
+  "canonical_copy_targets": 195,
+  "original_files_checked": 1331,
+  "original_source_updates": {
+    "docs/reports/课程项目报告_最终修订版_格式规范化.docx": {
+      "original_path": "docs/reports/课程项目报告_最终修订版_格式规范化.docx",
+      "initial_sha256": "abbefd1914e4e531d9b801e19b3de50f9e0a248a5d8ec89aa0b5cca73a91a3bb",
+      "latest_sha256": "6043c8b0ff5b8483fa1c70c1296d8a3ad14ca7095ff98ce06882641e34401c4d",
+      "latest_bytes": 4387557,
+      "latest_modified_ns": 1794414575295058600,
+      "previous_copy": "reports/history/before_latest_source_update/课程项目报告.docx",
+      "current_copy": "reports/课程项目报告.docx",
+      "text_changes": "最新原件删除了报告3.2中旧joint4安装位置/轴向/限位参数段及一段图引导文字，实验结果表未变化",
+      "operation": "只读比较原件；归档旧homework副本并复制最新原件；未写入原件"
+    }
+  },
+  "unexplained_original_changes": [],
+  "duplicate_byte_groups": [],
+  "report": {
+    "file": "reports/课程项目报告.docx",
+    "bytes": 4387557,
+    "sha256": "6043c8b0ff5b8483fa1c70c1296d8a3ad14ca7095ff98ce06882641e34401c4d",
+    "source_modified": "2026-11-12T00:29:35.295058+08:00",
+    "copy_identical": true,
+    "pdf": "用户允许省略；Word导出未成功，未创建PDF",
+    "page_count": "未由Word稳定取得；未使用失真的缓存页数"
+  },
+  "gesture_videos": [
+    {
+      "file": "results/gesture_control/videos/手势识别控制机械臂视频(Windows桌面录屏).mp4",
+      "bytes": 120931940,
+      "sha256": "86d0034c6decfdc84c0b7dfe8e13803a804ea3a0e5766c1a634c7b18c39ea31d",
+      "identical_to_original": true
+    },
+    {
+      "file": "results/gesture_control/videos/手势识别控制机械臂视频(机械臂反应).mp4",
+      "bytes": 23531367,
+      "sha256": "b9ce002bbf92e53944f40f1e8cd84cdb2d147e1b027dda31c3d63c8d15dea8b5",
+      "identical_to_original": true
+    }
+  ],
+  "hardware_run": false,
+  "git_writes": false,
+  "basic_control_notebooks_semantically_unchanged": 4,
+  "final_file_count": 229,
+  "final_bytes": 601732692
+}

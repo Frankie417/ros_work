@@ -31,11 +31,11 @@
 
 ### 手册给出的正逆运动学与标定依据
 
-[手册PDF第233页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=233)～[手册PDF第241页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=241)给出Arm5DoF示例：5个姿态角命名为θ1/θ2/θ3/θ4/θ6；这里θ6只是求解器变量名，不表示舵机ID6。示例D1/A1/A2/A3/A4=70/0/80/76.15/185.4mm，手册标明仅供参考，未用于覆盖当前代码参数。
+[手册PDF第233页](../../../homework/docs/references/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=233)～[手册PDF第241页](../../../homework/docs/references/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=241)给出Arm5DoF示例：5个姿态角命名为θ1/θ2/θ3/θ4/θ6；这里θ6只是求解器变量名，不表示舵机ID6。示例D1/A1/A2/A3/A4=70/0/80/76.15/185.4mm，手册标明仅供参考，未用于覆盖当前代码参数。
 
 令θ23=θ2+θ3，θ234=θ2+θ3+θ4，ρ=A1+A2cosθ2+A3cosθ23+A4cosθ234，则x=ρcosθ1，y=ρsinθ1，z=D1-A2sinθ2-A3sinθ23-A4sinθ234；pitch=θ234+π/2，roll=θ6+π（按示例处理周期）。θ为rad，位置为mm，ρ为基座平面径向距离。逆解枚举基座方向、正负肘解并逐轴限位过滤，返回解列表；公式推导和每个符号见[平台手册核对与页码索引](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%B9%B3%E5%8F%B0%E6%89%8B%E5%86%8C%E6%A0%B8%E5%AF%B9.md)。
 
-[手册PDF第229页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=229)的calc_kb给出k=(aA-aB)/(θA-θB)、b=aA-kθA，并把六通道结果存入config.py的JOINT2SERVO_K/B。week1第5通道两姿态原始值均3.1°，不足以建立手册要求的0→π/2可逆标定，须复核标准姿态及采样；不据此填造新K/B。
+[手册PDF第229页](../../../homework/docs/references/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=229)的calc_kb给出k=(aA-aB)/(θA-θB)、b=aA-kθA，并把六通道结果存入config.py的JOINT2SERVO_K/B。week1第5通道两姿态原始值均3.1°，不足以建立手册要求的0→π/2可逆标定，须复核标准姿态及采样；不据此填造新K/B。
 
 ## 4. 代码结构
 
@@ -69,7 +69,7 @@ SDK接口按调用处核对：`set_tool_pose(xyz,tool_pitch,tool_roll,T,is_soft_
 
 ### 手册底层API补充
 
-[手册PDF第214页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=214)～[手册PDF第217页](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=217)：`uservo.UartServoManager`接收pyserial串口对象；默认`/dev/ttyTHS1`、115200、8N1，ID0～5。`query_servo_angle(id)`返回原始角°；`set_servo_angle(id,angle,interval=...,velocity=...,t_acc=...,t_dec=...,power=...)`中interval/t_acc/t_dec单位ms，velocity单位°/s，power单位mW；`wait(timeout)`的timeout单位ms。不能与set_tool_pose的T秒混用。
+[手册PDF第214页](../../../homework/docs/references/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=214)～[手册PDF第217页](../../../homework/docs/references/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=217)：`uservo.UartServoManager`接收pyserial串口对象；默认`/dev/ttyTHS1`、115200、8N1，ID0～5。`query_servo_angle(id)`返回原始角°；`set_servo_angle(id,angle,interval=...,velocity=...,t_acc=...,t_dec=...,power=...)`中interval/t_acc/t_dec单位ms，velocity单位°/s，power单位mW；`wait(timeout)`的timeout单位ms。不能与set_tool_pose的T秒混用。
 
 底层驱动资料路径线索为`/Notebook/1.基础实验/uservo.py`，机械臂标定示例在Notebook的机械臂实验目录。新增目录已包含Arm5DoFKinematic依赖的transform、pose、quaternion和config；源码与配置核对见[新增SDK核对](../../参考资料/新增SDK核对.md)。手册的`Arm_Lib.Arm_Device`用另一套编号/直接角度接口，不能替换当前Arm5DoFUServo。
 
@@ -96,4 +96,4 @@ Notebook元数据Python3.8.10，课程平台Jetson/Linux/Jupyter。week3依赖 `
 week1/3/4原始报告、Notebook内代码与已存输出；SDK类名为Arm5DoFUServo、Arm5DoFKinematic。厂商说明已由本地手册补齐；【待补充：新增SDK与实际实验版本的对应及发布记录】。
 
 
-新增本地来源：[DICE白熊平台用户手册（相关章节）](../../../docs/references/DICE_白熊人工智能实训平台用户手册.pdf#page=229)；[平台手册核对与页码索引](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%B9%B3%E5%8F%B0%E6%89%8B%E5%86%8C%E6%A0%B8%E5%AF%B9.md)。
+新增本地来源：[DICE白熊平台用户手册（相关章节）](../../../homework/docs/references/DICE_%E7%99%BD%E7%86%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf#page=229)；[平台手册核对与页码索引](../../%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%B9%B3%E5%8F%B0%E6%89%8B%E5%86%8C%E6%A0%B8%E5%AF%B9.md)。

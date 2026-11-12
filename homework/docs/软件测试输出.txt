@@ -1,0 +1,19 @@
+src/gesture_control/week7/gesture_usb/test_usb.py
+test_hold_uses_measured_positions_and_requires_stability (__main__.HoldTests.test_hold_uses_measured_positions_and_requires_stability) ... ok
+test_sdk_motion_writes_cancel_but_hold_can_override (__main__.HoldTests.test_sdk_motion_writes_cancel_but_hold_can_override) ... ok
+test_duplicate_command_id (__main__.Tests.test_duplicate_command_id) ... ok
+test_five_during_busy_reaches_network_stop (__main__.Tests.test_five_during_busy_reaches_network_stop) ... ok
+test_hold_failure_cannot_be_cleared (__main__.Tests.test_hold_failure_cannot_be_cleared) ... ok
+test_lost_heartbeat_cancels_running_action (__main__.Tests.test_lost_heartbeat_cancels_running_action) ... ok
+test_normal_completion (__main__.Tests.test_normal_completion) ... ok
+test_old_epoch_rejected_after_stop_and_clear (__main__.Tests.test_old_epoch_rejected_after_stop_and_clear) ... ok
+test_stop_preempts_action_without_waiting_for_completion (__main__.Tests.test_stop_preempts_action_without_waiting_for_completion) ... ok
+test_wrong_token (__main__.Tests.test_wrong_token) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 6.146s
+
+OK
+
+src/vision_sorting/week5/5.目标识别/self_test_week5.py
+通过：红、黄、绿、蓝四个合成方块均被识别

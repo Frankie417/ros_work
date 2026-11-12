@@ -1,0 +1,66 @@
+{
+  "markdown_links": 372,
+  "static_counts": {
+    "python": 25,
+    "xml": 10,
+    "images": 102,
+    "notebooks": 16,
+    "code_cells": 112
+  },
+  "algorithm_functions_unchanged": 51,
+  "sdk_original_files_unchanged": 32,
+  "relocated_checks_passed": true,
+  "relocated_stdout": "ISOLATED_OK src/arm_motion_control/week3/week3.ipynb\nISOLATED_OK src/arm_motion_control/week4/Week4_堆叠.ipynb\n项目目录： C:\\Users\\Lenovo\\Desktop\\机器人报告\\第五学期\\tmp\\homework_stage2\\homework-isolated-cpmkc_ug\\renamed_course_project\\results\\vision_sorting\\runtime\\week5\n相机设备：/dev/video0；ROI：None；最小面积：700\n红色 HSV 初值：(((0, 90, 70), (10, 255, 255)), ((170, 90, 70), (179, 255, 255)))\n黄色 HSV 初值：(((18, 80, 80), (38, 255, 255)),)\n绿色 HSV 初值：(((40, 60, 35), (90, 255, 255)),)\n蓝色 HSV 初值：(((95, 80, 50), (135, 255, 255)),)\n识别、截图和 CSV 函数已就绪。\nISOLATED_OK src/vision_sorting/week5/5.目标识别/week5.ipynb\n真机自动分拣；摄像头 0 ；P4 判色区域 (240, 210, 440, 390)\nP4 台面参考： (195.9, -8.2, 20.4)\nP4 抓取： (200.2, -12.8, 45.0, 132.7, 179.0)\nP4 上方： (198.2, -12.8, 75.0, 132.7, 179.0)\n红色 → 有害垃圾：XYZ=(103.3, -132.5, 175.1) mm，Pitch=104.0°，Roll 原始=-945200.4°，运动用=159.6°\n黄色 → 其他垃圾：XYZ=(219.0, 99.8, 175.6) mm，Pitch=100.0°，Roll 原始=137329.9°，运动用=169.9°\n绿色 → 厨余垃圾：XYZ=(122.8, 114.8, 172.8) mm，Pitch=104.0°，Roll 原始=-945200.4°，运动用=159.6°\n蓝色 → 可回收垃圾：XYZ=(207.8, -141.3, 173.3) mm，Pitch=99.5°，Roll 原始=137329.9°，运动用=169.9°\n真机机械臂动作函数已就绪；启动预览后才会连接并移动机械臂\nISOLATED_OK src/vision_sorting/week6/week6.ipynb\n模型文件已找到：gesture_recognizer.task；可识别手势：食指竖起、食指和中指竖起、食指、中指和无名指竖起、拇指与食指成环、五指张开\nMEDIAPIPE_MODEL_LOADED 8373440\nBASIC_IMPORT_OK 01.机械臂关节标定.ipynb\nBASIC_IMPORT_OK 02.机械臂关节弧度控制.ipynb\nBASIC_IMPORT_OK 03.机械爪测试.ipynb\nBASIC_IMPORT_OK 04.末端位姿控制.ipynb\n",
+  "ros_models": [
+    {
+      "name": "marm_z1_style",
+      "counts": [
+        11,
+        10,
+        57,
+        13
+      ],
+      "joint4_axis": "0 1 0"
+    },
+    {
+      "name": "marm_z1_style_course_variant",
+      "counts": [
+        11,
+        10,
+        57,
+        13
+      ],
+      "joint4_axis": "0 -1 0"
+    }
+  ],
+  "ros_runtime_dependencies": [
+    "roscpp",
+    "tf",
+    "urdf",
+    "xacro",
+    "joint_state_publisher_gui",
+    "robot_state_publisher",
+    "rviz"
+  ],
+  "existing_software_tests_passed": true,
+  "original_files_checked": 1331,
+  "original_files_changed": [],
+  "word_locks_changed": [
+    "docs/reports/~$项目报告_最终修订版_格式规范化.docx"
+  ],
+  "external_source_report_updates": {
+    "docs/reports/课程项目报告_最终修订版_格式规范化.docx": {
+      "original_path": "docs/reports/课程项目报告_最终修订版_格式规范化.docx",
+      "initial_sha256": "abbefd1914e4e531d9b801e19b3de50f9e0a248a5d8ec89aa0b5cca73a91a3bb",
+      "latest_sha256": "6043c8b0ff5b8483fa1c70c1296d8a3ad14ca7095ff98ce06882641e34401c4d",
+      "latest_bytes": 4387557,
+      "latest_modified_ns": 1794414575295058600,
+      "previous_copy": "reports/history/before_latest_source_update/课程项目报告.docx",
+      "current_copy": "reports/课程项目报告.docx",
+      "text_changes": "最新原件删除了报告3.2中旧joint4安装位置/轴向/限位参数段及一段图引导文字，实验结果表未变化",
+      "operation": "只读比较原件；归档旧homework副本并复制最新原件；未写入原件"
+    }
+  },
+  "duplicate_byte_groups": [],
+  "errors": []
+}
