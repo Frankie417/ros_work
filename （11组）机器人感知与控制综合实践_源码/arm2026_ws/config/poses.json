@@ -1,0 +1,164 @@
+[
+  {
+    "name": "ready",
+    "label": "Reference pose",
+    "joint_names": [
+      "marm_mod_joint1",
+      "marm_mod_joint2",
+      "marm_mod_joint3",
+      "marm_mod_joint4",
+      "marm_mod_joint5",
+      "marm_mod_joint6",
+      "marm_mod_gripper_joint"
+    ],
+    "positions": [
+      0,
+      0.8,
+      -1.5,
+      0.7,
+      0,
+      0,
+      -0.25
+    ],
+    "end_translation": [
+      0.19609711841801866,
+      0.0,
+      0.5058502972092426
+    ]
+  },
+  {
+    "name": "base_turn",
+    "label": "Joint 1: base rotation",
+    "joint_names": [
+      "marm_mod_joint1",
+      "marm_mod_joint2",
+      "marm_mod_joint3",
+      "marm_mod_joint4",
+      "marm_mod_joint5",
+      "marm_mod_joint6",
+      "marm_mod_gripper_joint"
+    ],
+    "positions": [
+      0.75,
+      0.8,
+      -1.5,
+      0.7,
+      0,
+      0,
+      -0.25
+    ],
+    "end_translation": [
+      0.1434820787646958,
+      0.1336673966426072,
+      0.5058502972092426
+    ]
+  },
+  {
+    "name": "shoulder",
+    "label": "Joint 2: shoulder lift",
+    "joint_names": [
+      "marm_mod_joint1",
+      "marm_mod_joint2",
+      "marm_mod_joint3",
+      "marm_mod_joint4",
+      "marm_mod_joint5",
+      "marm_mod_joint6",
+      "marm_mod_gripper_joint"
+    ],
+    "positions": [
+      0,
+      1.2,
+      -1.5,
+      0.7,
+      0,
+      0,
+      -0.25
+    ],
+    "end_translation": [
+      0.3269804065066385,
+      0.0,
+      0.3998172335579767
+    ]
+  },
+  {
+    "name": "elbow",
+    "label": "Joint 3: elbow fold",
+    "joint_names": [
+      "marm_mod_joint1",
+      "marm_mod_joint2",
+      "marm_mod_joint3",
+      "marm_mod_joint4",
+      "marm_mod_joint5",
+      "marm_mod_joint6",
+      "marm_mod_gripper_joint"
+    ],
+    "positions": [
+      0,
+      0.8,
+      -2.15,
+      0.7,
+      0,
+      0,
+      -0.25
+    ],
+    "end_translation": [
+      0.016269559028519703,
+      0.0,
+      0.7182590300864977
+    ]
+  },
+  {
+    "name": "wrist",
+    "label": "Joints 4-6: wrist orientation",
+    "joint_names": [
+      "marm_mod_joint1",
+      "marm_mod_joint2",
+      "marm_mod_joint3",
+      "marm_mod_joint4",
+      "marm_mod_joint5",
+      "marm_mod_joint6",
+      "marm_mod_gripper_joint"
+    ],
+    "positions": [
+      0,
+      0.8,
+      -1.5,
+      1,
+      0.6,
+      0.8,
+      -0.25
+    ],
+    "end_translation": [
+      0.14601172942779708,
+      0.12535062909369785,
+      0.43101733871370684
+    ]
+  },
+  {
+    "name": "gripper",
+    "label": "Gripper: fully open",
+    "joint_names": [
+      "marm_mod_joint1",
+      "marm_mod_joint2",
+      "marm_mod_joint3",
+      "marm_mod_joint4",
+      "marm_mod_joint5",
+      "marm_mod_joint6",
+      "marm_mod_gripper_joint"
+    ],
+    "positions": [
+      0,
+      0.8,
+      -1.5,
+      0.7,
+      0,
+      0,
+      -1.5707963267948966
+    ],
+    "end_translation": [
+      0.19609711841801866,
+      0.0,
+      0.5058502972092426
+    ]
+  }
+]

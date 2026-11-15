@@ -1,0 +1,11 @@
+2026-11-15 软件回归检查
+
+ROS虚拟手势门控：test_gesture_gate.py
+PASS: four colours; OK alone, no-relax, repeat, flash, expiry, busy and multi-hand rejection
+
+实体手势软件逻辑：homework/src/gesture_control/week7/gesture_usb/test_usb.py
+10项通过：反馈保持、写包取消、重复指令、BUSY中Five、保持失败、心跳丢失、正常完成、旧epoch拒绝、停止抢占、错误令牌。
+Ran 10 tests in 7.637s
+OK
+
+测试使用离线事件、模拟器、桩和回环HTTP，不是实体机械臂重测。

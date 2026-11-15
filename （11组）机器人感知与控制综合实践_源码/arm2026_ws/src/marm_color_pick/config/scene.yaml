@@ -1,0 +1,17 @@
+# Metres, radians; root frame is the unchanged arm base.
+table_height: 0.06
+cube_size: 0.028
+source_x: 0.29
+destination_x: 0.17
+rows: [-0.12, -0.04, 0.04, 0.12]
+lift_height: 0.06
+move_duration: 1.5
+grip_duration: 0.65
+auto_start: true
+camera:
+  width: 720
+  height: 600
+  x_min: 0.10
+  x_max: 0.38
+  y_min: -0.20
+  y_max: 0.20

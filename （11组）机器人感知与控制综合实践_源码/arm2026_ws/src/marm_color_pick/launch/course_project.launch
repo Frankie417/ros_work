@@ -1,0 +1,25 @@
+<launch>
+  <arg name="rviz" default="true"/>
+  <arg name="auto_start" default="false"/>
+  <arg name="gesture" default="true"/>
+  <arg name="bridge_port" default="8796"/>
+  <arg name="windows_camera" default="false"/>
+  <arg name="windows_python" default="/mnt/d/robot_new/.venv-arm2026-gesture/Scripts/python.exe"/>
+  <include file="$(find marm_color_pick)/launch/color_pick.launch">
+    <arg name="rviz" value="$(arg rviz)"/>
+    <arg name="auto_start" value="$(arg auto_start)"/>
+    <arg name="external_perception" value="true"/>
+    <arg name="rviz_config" value="$(find marm_color_pick)/config/course_project.rviz"/>
+  </include>
+  <node name="color_perception" pkg="marm_color_pick" type="perception_node.py" output="screen" required="true">
+    <rosparam command="load" file="$(find marm_color_pick)/config/scene.yaml"/>
+  </node>
+  <node if="$(arg gesture)" name="arm_gesture_bridge" pkg="marm_color_pick" type="gesture_bridge.py" output="screen">
+    <param name="port" value="$(arg bridge_port)"/>
+    <param name="allow_camera_preview" value="true"/>
+  </node>
+  <node if="$(arg windows_camera)" name="windows_gesture_camera" pkg="marm_color_pick" type="windows_camera.py" output="screen">
+    <param name="python" value="$(arg windows_python)"/>
+    <param name="client" value="$(find marm_color_pick)/gesture_pc/app.py"/>
+  </node>
+</launch>

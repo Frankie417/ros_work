@@ -1,0 +1,8 @@
+gesture_recognizer.task: MediaPipe official gesture recognition model bundle.
+Source: https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task
+Project: https://github.com/google-ai-edge/mediapipe
+License: Apache-2.0; see mediapipe/LICENSE.
+Python and ROS dependencies retain their respective upstream licenses.
+
+Mechanical appearance reference: https://github.com/unitreerobotics/z1_ros
+No STL/DAE assets from that project are included.
